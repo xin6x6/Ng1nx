@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="menu-bar">
-    <span></span>
-    <span>Ng1nx's Sweet Home</span>
+  <div class="menu-bar noselect">
+    <div class="menu-bar-item"> <img src="icon/apple.png"/> </div>
+    <span style="font-weight: 500; font-size:13px;">HomePage</span>
 <!--    <span>File</span>-->
 <!--    <span>Edit</span>-->
 <!--    <span>View</span>-->
@@ -19,11 +19,11 @@
   </div>
 
   <div id="window" class="macos-window">
-    <div id="title-bar" class="title-bar">
-      <div class="traffic-lights">
-        <div class="traffic-light red" onclick="closeWindow()"></div>
-        <div class="traffic-light yellow" onclick="toggleMinimize()"></div>
-        <div class="traffic-light green" onclick="toggleMaximize()"></div>
+    <div id="title-bar" class="title-bar noselect">
+      <div class="traffic-lights noselect">
+        <img class="traffic-light-svg noselect" id="red-btn" src="icon/closeNormal.svg" draggable="false" />
+        <img class="traffic-light-svg noselect" id="yellow-btn" src="icon/minimizeNormal.svg" draggable="false" />
+        <img class="traffic-light-svg noselect" id="green-btn" src="icon/maximizeNormal.svg" draggable="false" />
       </div>
     </div>
     <div class="content">
@@ -35,8 +35,8 @@
     <div class="resizer"></div>
   </div>
 
-  <div class="dock">
-    <div class="dock-icon" onclick="Resize()"> <img src="icon/HomePage.png"/> </div>
+  <div class="dock noselect">
+    <div class="dock-icon" id="dock-app-icon" onclick=Resize()> <img src="icon/HomePage.png"/> </div>
 <!--    <div class="dock-icon">📁</div>-->
 <!--    <div class="dock-icon">🌐</div>-->
 <!--    <div class="dock-icon">💬</div>-->

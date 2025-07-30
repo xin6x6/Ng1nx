@@ -119,27 +119,6 @@ function Maximize(){
     maximized = true;
     minimized = false;
 }
-
-function Resize(){
-    if (!minimized) {
-      previousPosition = {
-        top: win.style.top,
-        left: win.style.left,
-        width: win.style.width,
-        height: win.style.height
-      };
-    } else {
-      openWindow();
-      win.style.top = previousPosition.top;
-      win.style.left = previousPosition.left;
-      win.style.width = previousPosition.width;
-      win.style.height = previousPosition.height;
-      win.style.overflow = "hidden";
-      fadeInWindow();
-      minimized = false;
-    }
-}
-
 function toggleMinimize() {
   if (!minimized) {
     previousPosition = {
@@ -192,3 +171,74 @@ function toggleMaximize() {
     maximized = false;
   }
 }
+
+
+function setupTrafficButton(id, baseName, onClick) {
+  const btn = document.getElementById(id);
+  btn.addEventListener("mouseover", () => {
+    btn.src = `icon/${baseName}Hover.svg`;
+  });
+  btn.addEventListener("mouseout", () => {
+    btn.src = `icon/${baseName}Normal.svg`;
+  });
+  btn.addEventListener("mousedown", () => {
+    btn.src = `icon/${baseName}Press.svg`;
+  });
+  btn.addEventListener("mouseup", () => {
+    btn.src = `icon/${baseName}Hover.svg`;
+  });
+  btn.addEventListener("click", onClick);
+}
+
+setupTrafficButton("red-btn", "close", closeWindow);
+setupTrafficButton("yellow-btn", "minimize", minimizeToDock);
+setupTrafficButton("green-btn", "maximize", toggleMaximize);
+
+// minimize to dock icon
+const dockIcon = document.getElementById("dock-app-icon");
+const windowEl = document.getElementById("window");
+
+function minimizeToDock() {
+  const iconRect = dockIcon.getBoundingClientRect();
+  const winRect = windowEl.getBoundingClientRect();
+
+  const targetX = iconRect.left + iconRect.width / 2 - winRect.width / 2;
+  const targetY = iconRect.top + iconRect.height / 2 - winRect.height / 2;
+
+  windowEl.style.transition = "all 0.4s cubic-bezier(0.5, 0, 0, 1)";
+  windowEl.style.transformOrigin = "center center";
+  windowEl.style.transform = `translate(${targetX - winRect.left}px, ${targetY - winRect.top}px) scale(0.1)`;
+  windowEl.style.opacity = "0";
+
+  setTimeout(() => {
+    windowEl.style.display = "none";
+    windowEl.dataset.minimized = "true";
+  }, 400);
+}
+
+// resize
+
+function Resize(){
+  windowEl.style.display = "block";
+
+    // 重置缩放状态
+    windowEl.style.transition = "none";
+    windowEl.style.transform = `scale(0.1)`;
+    windowEl.style.opacity = "0";
+
+    // 触发重绘
+    void windowEl.offsetWidth;
+
+    // 动画还原
+    windowEl.style.transition = "all 0.4s cubic-bezier(0.5, 0, 0, 1)";
+    windowEl.style.transform = "translate(0, 0) scale(1)";
+    windowEl.style.opacity = "1";
+
+    windowEl.dataset.minimized = "false";
+}
+
+dockIcon.addEventListener("click", () => {
+  if (windowEl.dataset.minimized === "true") {
+    Resize()
+  }
+});
