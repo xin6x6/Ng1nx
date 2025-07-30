@@ -112,15 +112,20 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
   color: black;
   transition: transform 0.2s;
   cursor: pointer;
 }
 
+.dock-icon img {
+    max-width: 105%;
+    max-height: 105%;
+    object-fit: contain;
+    pointer-events: none;
+}
+
 .dock-icon:hover {
   transform: scale(1.2);
-  background: rgba(255,255,255,0.4);
 }
 
 .resizer {
