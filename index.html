@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ng1nx's Sweet Home</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="menu-bar">
+    <span></span>
+    <span>Ng1nx's Sweet Home</span>
+<!--    <span>File</span>-->
+<!--    <span>Edit</span>-->
+<!--    <span>View</span>-->
+<!--    <span>Go</span>-->
+<!--    <span>Window</span>-->
+<!--    <span>Help</span>-->
+  </div>
+
+  <div id="window" class="macos-window">
+    <div id="title-bar" class="title-bar">
+      <div class="traffic-lights">
+        <div class="traffic-light red" onclick="closeWindow()"></div>
+        <div class="traffic-light yellow" onclick="toggleMinimize()"></div>
+        <div class="traffic-light green" onclick="toggleMaximize()"></div>
+      </div>
+    </div>
+    <div class="content">
+        <h1>Ng1nx's Sweet Home</h1>
+    </div>
+    <div class="resizer"></div>
+  </div>
+
+  <div class="dock">
+    <div class="dock-icon" onclick="Resize()"></div>
+<!--    <div class="dock-icon">📁</div>-->
+<!--    <div class="dock-icon">🌐</div>-->
+<!--    <div class="dock-icon">💬</div>-->
+<!--    <div class="dock-icon">🗒️</div>-->
+<!--    <div class="dock-icon">🛠</div>-->
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
