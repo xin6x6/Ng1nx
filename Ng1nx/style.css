@@ -1,0 +1,138 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  height: 100vh;
+  background: url('Tahoe.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.menu-bar {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  color: white;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(15px);
+  font-size: 14px;
+  user-select: none;
+}
+
+.menu-bar span {
+  margin-right: 20px;
+}
+
+.macos-window {
+  width: 800px;
+  height: 600px;
+  border-radius: 25px;
+  backdrop-filter: blur(25px) saturate(160%);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 80px;
+  left: calc(50% - 400px);
+  transition: all 0.3s cubic-bezier(0.5, 0, 0, 1), opacity 0.3s cubic-bezier(0.8, 0.6, 0.4, 0);
+  opacity: 1;
+  user-select: none;
+}
+
+.title-bar {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+
+  cursor: default;
+  user-select: none;
+}
+
+.traffic-lights {
+  display: flex;
+  gap: 8px;
+}
+
+.traffic-light {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: default;
+}
+
+.red { background: #ff5f57; }
+.yellow { background: #ffbd2e; }
+.green { background: #28c840; }
+
+.content {
+  flex: 1;
+  padding: 24px;
+  color: #fff;
+  font-size: 16px;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 24px;
+  margin: 0 0 12px;
+}
+
+.dock {
+  position: relative;
+  height: 70px;
+  margin: 20px auto;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border-radius: 22px;
+  padding: 10px 10px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.dock-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: black;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.dock-icon:hover {
+  transform: scale(1.2);
+  background: rgba(255,255,255,0.4);
+}
+
+.resizer {
+  width: 20px;
+  height: 20px;
+  background: rgba(0,0,0,0);
+  border-radius: 4px;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  cursor: se-resize;
+  user-select: none;
+  transition: background 0.3s;
+}
+
