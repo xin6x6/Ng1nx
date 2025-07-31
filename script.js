@@ -219,7 +219,7 @@ function minimizeToDock() {
 // resize
 
 function Resize(){
-  windowEl.style.display = "block";
+  windowEl.style.display = "flex";
 
     // 重置缩放状态
     windowEl.style.transition = "none";
