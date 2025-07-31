@@ -242,3 +242,27 @@ dockIcon.addEventListener("click", () => {
     Resize()
   }
 });
+
+
+//backgrounds
+const backgrounds = [
+  "backgrounds/Big_Sur_Colorful_Day.jpg",
+  "backgrounds/Big_Sur_Colorful_Night.jpg",
+  "backgrounds/Big_Sur_day.jpg",
+  "backgrounds/Big_Sur_night.jpg",
+  "backgrounds/Cheetah.jpg",
+  "backgrounds/Mojave.jpg",
+  "backgrounds/Mojave_1.jpg",
+  "backgrounds/Sequoia.jpg",
+  "backgrounds/Sequoia_1.jpg",
+  "backgrounds/Tahoe.jpg"
+];
+
+let currentBackgroundIndex = 0;
+
+document.getElementById("appleIcon").addEventListener("click", () => {
+  currentBackgroundIndex = (currentBackgroundIndex + 1) % backgrounds.length;
+  document.body.style.backgroundImage = `url('${backgrounds[currentBackgroundIndex]}')`;
+  document.body.style.backgroundSize = "cover";
+  document.body.style.backgroundPosition = "center";
+});
