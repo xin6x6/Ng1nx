@@ -1,11 +1,13 @@
 const win = document.getElementById("window");
 const titleBar = document.getElementById("title-bar");
 const resizer = document.querySelector(".resizer");
+const dock = document.getElementById("dock");
 
 let minimized = false;
 let maximized = false;
 let isDragging = false;
 let isResizing = false;
+let isDockHided = false;
 let offsetX = 0;
 let offsetY = 0;
 
@@ -72,8 +74,8 @@ document.addEventListener("mouseup", () => {
 
 function closeWindow() {
   win.style.display = "none";
+  showDock();
 }
-
 function openWindow() {
   win.style.display = "flex";
   win.style.opacity = "1";
@@ -82,12 +84,12 @@ function openWindow() {
 function fadeOutWindow() {
   win.style.opacity = "0";
 }
-
 function fadeInWindow() {
   win.style.opacity = "1";
 }
 
 function Minimize(){
+    showDock();
     previousPosition = {
       top: win.style.top,
       left: win.style.left,
@@ -103,7 +105,6 @@ function Minimize(){
     minimized = true;
     maximized = false;
 }
-
 function Maximize(){
     previousPosition = {
       top: win.style.top,
@@ -120,6 +121,7 @@ function Maximize(){
     minimized = false;
 }
 function toggleMinimize() {
+  showDock();
   if (!minimized) {
     previousPosition = {
       top: win.style.top,
@@ -148,6 +150,7 @@ function toggleMinimize() {
 }
 
 function toggleMaximize() {
+  toggleHideDock();
   if (!maximized) {
     previousPosition = {
       top: win.style.top,
@@ -155,10 +158,10 @@ function toggleMaximize() {
       width: win.style.width,
       height: win.style.height
     };
-    win.style.top = "60px";
-    win.style.left = "40px";
-    win.style.width = "calc(100% - 80px)";
-    win.style.height = "calc(100% - 160px)";
+    win.style.top = "3px";
+    win.style.left = "10px";
+    win.style.width = "calc(100% - 20px)";
+    win.style.height = "calc(100% - 10px)";
     win.style.borderRadius = "25px";
     maximized = true;
     minimized = false;
@@ -199,6 +202,7 @@ const dockIcon = document.getElementById("dock-app-icon");
 const windowEl = document.getElementById("window");
 
 function minimizeToDock() {
+  showDock();
   const iconRect = dockIcon.getBoundingClientRect();
   const winRect = windowEl.getBoundingClientRect();
 
@@ -216,9 +220,29 @@ function minimizeToDock() {
   }, 400);
 }
 
+// hideDock
+function toggleHideDock() {
+  if(!isDockHided){
+    hideDock();
+  } else {
+    showDock();
+  }
+}
+function hideDock(){
+  dock.style.top = "80px";
+  isDockHided = true;
+}
+function showDock(){
+  dock.style.top = "0px";
+  isDockHided = false;
+}
+
 // resize
 
 function Resize(){
+  if(maximized == true){
+    hideDock();
+  }
   windowEl.style.display = "flex";
 
     // 重置缩放状态
@@ -266,3 +290,7 @@ document.getElementById("appleIcon").addEventListener("click", () => {
   document.body.style.backgroundSize = "cover";
   document.body.style.backgroundPosition = "center";
 });
+
+setTimeout(() => {
+  toggleMaximize();
+}, 0);

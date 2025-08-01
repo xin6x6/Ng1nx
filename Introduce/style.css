@@ -1,0 +1,50 @@
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('../font/Comfortaa-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0e0e11; /* 非纯黑 */
+  color: white;
+  font-family: 'Comfortaa', sans-serif;
+  overflow-x: hidden;
+  height: 200vh; /* 允许滚动 */
+}
+
+#hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#title {
+    font-size: 3rem;
+    color: #ffffff;
+    text-align: center;
+    text-shadow:
+        0 0 5px #b388ff,
+        0 0 10px #c56fff,
+        0 0 20px #aa00ff,
+        0 0 30px #aa00ff;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+    will-change: opacity, transform;
+    animation: floatFancy 10s ease-in-out infinite alternate;
+    transform-style: preserve-3d;
+    transform-origin: center;
+}
+
+/* 缓动浮动+轻微缩放 */
+@keyframes floatFancy {
+    0% {
+        transform: translateY(0) rotateZ(0.3deg);
+    }
+    100% {
+        transform: translateY(-10px) rotateZ(-0.3deg);
+    }
+}

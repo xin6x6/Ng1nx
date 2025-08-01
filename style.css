@@ -4,7 +4,7 @@
 html, body {
   margin: 0;
   height: 100vh;
-  background: url('backgrounds/Tahoe.jpg');
+  background: url('backgrounds/Neon.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -121,6 +121,7 @@ h1 {
 
 .dock {
   position: relative;
+  top: 0px;
   height: 70px;
   margin: 5px auto;
   background: rgba(255, 255, 255, 0.08);
@@ -132,6 +133,7 @@ h1 {
   align-items: center;
   justify-content: center;
   border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.3s ease-out;
 }
 
 .dock-icon {
@@ -171,7 +173,6 @@ h1 {
   bottom: 0px;
   cursor: se-resize;
   user-select: none;
-  transition: background 0.3s;
 }
 
 #iframe-content {
