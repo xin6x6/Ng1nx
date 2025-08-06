@@ -9,6 +9,14 @@
   bottom: 10%;
   margin: -85px 0 0 -78px;
   perspective: 500px;
+  transition: transform 0.5s ease;
+
+}
+.macbook:hover {
+  transform: scale(1.1);
+}
+.macbook:active {
+  transform: scale(0.9);
 }
 .shadow {
   position: absolute;
@@ -410,4 +418,16 @@
   100% {
     box-shadow: 0 0 60px 40px rgba(0,0,0,0.3);
   }
+}
+
+
+.macBookBoarder {
+  background-color: #777;
+  width: 150px;
+  height: 96px;
+  position: absolute;
+  left: 10%;
+  bottom: 10%;
+  margin: -85px 0 0 -78px;
+  perspective: 500px;
 }

@@ -294,3 +294,7 @@ document.getElementById("appleIcon").addEventListener("click", () => {
 setTimeout(() => {
   toggleMaximize();
 }, 0);
+
+titleBar.addEventListener("dblclick",() =>{
+  toggleMaximize();
+});

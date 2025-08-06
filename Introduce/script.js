@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 初始淡入
     setTimeout(() => {
+        console.log(random);
         title.style.opacity = 1;
         mainContents.style.opacity = 0;
     }, 100);
@@ -32,13 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+let ableToRick = true;
 
 //pTable
 const pTable = document.getElementById("pTable");
 const random = Math.random();
 const video = document.getElementById("rickVideo");
 pTable.addEventListener("click", (e) => {
-    if(random*100 > 75){
+    if(random*100 > 75 & ableToRick){
         video.muted = false; // 取消静音
         video.volume = 1.0; // 最大音量
         video.style.display = "block";
@@ -62,3 +64,18 @@ pTable.addEventListener("click", (e) => {
 
 
 });
+
+//macBook
+const mac = document.getElementById("macBook");
+const touchPad = document.getElementById("touchPad");
+mac.addEventListener("click", () => {
+    console.log(ableToRick);
+    ableToRick = !ableToRick;
+
+    if (ableToRick) { 
+        touchPad.style.background = "#cdcdcd";
+    } else {
+        touchPad.style.background = "#ca7575ff";
+    }
+});
+
