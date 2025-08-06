@@ -27,4 +27,38 @@ document.addEventListener("DOMContentLoaded", () => {
         title.style.transform = `translateX(${x*3}px) translateY(${y*3}px)`;
     });
     title.style.animation = "floatFancy 10s ease-in-out infinite alternate";
+
+
+});
+
+
+//pTable
+const pTable = document.getElementById("pTable");
+const random = Math.random();
+const video = document.getElementById("rickVideo");
+
+pTable.addEventListener("click", (e) => {
+    if(random*100 > 75){
+        video.muted = false; // 取消静音
+        video.volume = 1.0; // 最大音量
+        video.style.display = "block";
+        setTimeout(() => {
+        }, 2000);
+        video.play().then(() => {
+        // 请求全屏
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) { // Safari
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { // IE
+                video.msRequestFullscreen();
+                }
+        }).catch((err) => {
+            console.warn("自动播放失败:", err);
+        });
+    } else {
+        window.location.href='https://ptable.com/#Properties';
+    }
+
+
 });
