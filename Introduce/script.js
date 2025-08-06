@@ -4,14 +4,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // 初始淡入
     setTimeout(() => {
         title.style.opacity = 1;
+        mainContents.style.opacity = 0;
     }, 100);
 
     // 滚动时淡出标题
     window.addEventListener("scroll", () => {
         const scrollY = window.scrollY;
         const fadeDistance = 200;
-        const newOpacity = Math.max(0, 1 - scrollY / fadeDistance);
-        title.style.opacity = newOpacity;
+        const newTitleOpacity = Math.max(0, 1 - scrollY / fadeDistance);
+        title.style.opacity = newTitleOpacity;
     });
 
     // 鼠标跟随漂移
@@ -36,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
 const pTable = document.getElementById("pTable");
 const random = Math.random();
 const video = document.getElementById("rickVideo");
-
 pTable.addEventListener("click", (e) => {
     if(random*100 > 75){
         video.muted = false; // 取消静音
