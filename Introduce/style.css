@@ -6,20 +6,20 @@
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background-color: #0e0e11; /* 非纯黑 */
-  color: white;
-  font-family: 'Comfortaa', sans-serif;
-  overflow-x: hidden;
-  height: 200vh; /* 允许滚动 */
+    margin: 0;
+    padding: 0;
+    background-color: #0e0e11; /* 非纯黑 */
+    color: white;
+    font-family: 'Comfortaa', sans-serif;
+    overflow-x: hidden;
+    height: 200vh; /* 允许滚动 */
 }
 
 #hero {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #title {
@@ -47,4 +47,70 @@ body {
     100% {
         transform: translateY(-10px) rotateZ(-0.3deg);
     }
+}
+
+/**/
+/* From Uiverse.io by Tiagoadag */ 
+.card {
+    width: 250px;
+    height: 100px;
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    border-radius: 20px;
+    transition: all .3s;
+    position: relative;
+    /*margin-bottom: auto;
+    /*margin-left: auto;
+    margin-right: auto; */
+}
+
+.card2 {
+    width: 250px;
+    height: 100px;
+    background-color: #1a1a1a;
+    transition: all .2s;
+    justify-content: center; /* 水平居中 */
+    align-items: center;     /* 垂直居中 */
+}
+
+.card2:hover {
+    transform: scale(0.98);
+    border-radius: 20px;
+}
+
+.card:hover {
+    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+}
+
+.card-text {
+    position: relative;
+    transform-origin: center center;
+    /* top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%); */
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
+    color: #ffffff;
+    text-align: center;
+    text-shadow:
+        0 0 5px #b388ff,
+        0 0 10px #c56fff,
+        0 0 20px #aa00ff,
+        0 0 30px #aa00ff;
+}
+.card-text:hover {
+    text-shadow:
+        0 0 3px #b388ff,
+        0 0 5px #c56fff,
+        0 0 10px #aa00ff,
+        0 0 15px #aa00ff;
+}
+
+.noselect {
+    user-select: none;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
 }
