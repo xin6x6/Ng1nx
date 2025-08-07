@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const title = document.getElementById("title");
+    const bigMacScreen = document.getElementById("bigMacScreen");
 
     // 初始淡入
     setTimeout(() => {
@@ -14,6 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const fadeDistance = 200;
         const newTitleOpacity = Math.max(0, 1 - scrollY / fadeDistance);
         title.style.opacity = newTitleOpacity;
+
+        
+        const existDistance = 995;
+        const macFlip = -88.5-(Math.max(-88.5, Math.min(0,(existDistance - scrollY)/0.9)));
+        const macPerspective = Math.min(1900, Math.max(1000, 1900 - Math.max(0, (scrollY - existDistance) )));
+        console.log(Math.max(1000, 1900 - Math.max(0, scrollY-existDistance) ) );
+        bigMacScreen.style.transform = "perspective(" + macPerspective + "px) RotateX(" + macFlip + "deg)"
     });
 
     // 鼠标跟随漂移

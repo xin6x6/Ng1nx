@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ng1nx's Sweet Home</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div class="menu-bar noselect">
-    <div class="menu-bar-item" id="appleIcon"> <img src="icon/apple.png" draggable="false"/> </div>
+    <div class="menu-bar-item" id="appleIcon"> <img src="icon/apple.png" draggable="false" /> </div>
     <span style="font-weight: 500; font-size:13px;">HomePage</span>
-<!--    <span>File</span>-->
-<!--    <span>Edit</span>-->
-<!--    <span>View</span>-->
-<!--    <span>Go</span>-->
-<!--    <span>Window</span>-->
-<!--    <span>Help</span>-->
+    <!--    <span>File</span>-->
+    <!--    <span>Edit</span>-->
+    <!--    <span>View</span>-->
+    <!--    <span>Go</span>-->
+    <!--    <span>Window</span>-->
+    <!--    <span>Help</span>-->
   </div>
 
-  <div id="window" class="macos-window">
+  <div id="window-Introduce" class="macos-window">
     <div id="title-bar" class="title-bar noselect">
       <div class="traffic-lights noselect">
         <img class="traffic-light-svg noselect" id="red-btn" src="icon/closeNormal.svg" draggable="false" />
@@ -29,14 +31,43 @@
     <div class="content">
       <iframe id="iframe-content" src="Introduce/Introduce.html"></iframe>
     </div>
-    <div class="resizer"></div>
   </div>
 
+
+
+
+  <div id="window-Settings" class="macos-window" style="display: none;">
+    <div id="title-bar" class="title-bar noselect">
+      <div class="traffic-lights noselect">
+        <img class="traffic-light-svg noselect" id="red-btn" src="icon/closeNormal.svg" draggable="false" />
+        <img class="traffic-light-svg noselect" id="yellow-btn" src="icon/minimizeNormal.svg" draggable="false" />
+        <img class="traffic-light-svg noselect" id="green-btn" src="icon/maximizeNormal.svg" draggable="false" />
+      </div>
+    </div>
+    <div class="content">
+      <iframe id="iframe-content" src="Settings/Settings.html"></iframe>
+    </div>
+  </div>
+
+
+  <div id="window-LaunchPad" style="display: none;">
+    <iframe src="LaunchPad/LaunchPad.html" frameborder="0"></iframe>
+  </div> 
+
+
+
+
+
   <div class="dock noselect" id="dock">
-    <div class="dock-icon" id="dock-app-icon" onclick=Resize()> <img src="icon/HomePage.png" draggable="false" /> </div>
-    <!-- <div class="dock-icon" id="dock-app-icon" onclick=Resize()> <img src="icon/settings.png" draggable="false" /> </div> -->
+    <div class="dock-icon" id="dock-app-icon" data-window-id="window-Introduce"> <img src="icon/HomePage.png"
+        draggable="false" /> </div>
+    <div class="dock-icon" id="dock-app-icon" data-window-id="window-Settings"> <img src="icon/settings.png"
+        draggable="false" /> </div>
+    <div class="dock-icon" id="dock-app-icon" data-window-id="window-LaunchPad"> <img src="icon/LaunchPad.png"
+        draggable="false" /> </div>
   </div>
 
   <script src="script.js"></script>
 </body>
+
 </html>

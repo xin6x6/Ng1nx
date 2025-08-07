@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Launchpad</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div id="launchpad">
+        <div class="launchpad-grid">
+            <div class="launchpad-app" data-app="Finder">
+                <img src="../icon/apple.png" alt="Finder" />
+                <span>Finder</span>
+            </div>
+            <div class="launchpad-app" data-app="Safari">
+                <img src="../icon/apple.png" alt="Safari" />
+                <span>Safari</span>
+            </div>
+            <div class="launchpad-app" data-app="Music">
+                <img src="../icon/apple.png" alt="Music" />
+                <span>Music</span>
+            </div>
+            <!-- 更多 app 图标可以继续添加 -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+
+
+</html>
+
+<script>
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            parent.document.getElementById("window-LaunchPad").style.display = "none";
+        }
+    });
+</script>
