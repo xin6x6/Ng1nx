@@ -37,15 +37,13 @@ let ableToRick = true;
 
 //pTable
 const pTable = document.getElementById("pTable");
-const random = Math.random();
+let random = Math.random();
 const video = document.getElementById("rickVideo");
-pTable.addEventListener("click", (e) => {
+pTable.addEventListener("click", () => {
     if(random*100 > 75 & ableToRick){
         video.muted = false; // 取消静音
         video.volume = 1.0; // 最大音量
         video.style.display = "block";
-        setTimeout(() => {
-        }, 2000);
         video.play().then(() => {
         // 请求全屏
             if (video.requestFullscreen) {
