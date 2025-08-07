@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 初始淡入
     setTimeout(() => {
+        doChangeMacContent();
         console.log(random);
         title.style.opacity = 1;
-        mainContents.style.opacity = 0;
     }, 100);
 
     // 滚动时淡出标题
@@ -39,6 +39,7 @@ let ableToRick = true;
 const pTable = document.getElementById("pTable");
 let random = Math.random();
 const video = document.getElementById("rickVideo");
+
 pTable.addEventListener("click", () => {
     if(random*100 > 75 & ableToRick){
         video.muted = false; // 取消静音
@@ -66,9 +67,37 @@ pTable.addEventListener("click", () => {
 //macBook
 const mac = document.getElementById("macBook");
 const touchPad = document.getElementById("touchPad");
+const macScreenContents = document.getElementById("contents");
+
+mac.addEventListener("mouseenter", () => {
+
+});
+
+function doChangeMacContent() { 
+    if (random*100 > 75 & ableToRick) {
+        macScreenContents.src = "../icon/folderQmark.png";
+        //
+        macScreenContents.style.position="relative";
+        macScreenContents.style.width="130px";
+        macScreenContents.style.height="74px";
+        macScreenContents.style.top="0px";
+        macScreenContents.style.left="0px";
+
+    } else {
+        macScreenContents.src = "../icon/apple.png";
+        //
+        macScreenContents.style.position="relative";
+        macScreenContents.style.left="calc(50% - 5px)";
+        macScreenContents.style.top="calc(50% - 10px)";
+        macScreenContents.style.width="10px";
+        macScreenContents.style.height="10px";
+    }
+}
+
 mac.addEventListener("click", () => {
     console.log(ableToRick);
     ableToRick = !ableToRick;
+    doChangeMacContent();
 
     if (ableToRick) { 
         touchPad.style.background = "#cdcdcd";
@@ -76,4 +105,3 @@ mac.addEventListener("click", () => {
         touchPad.style.background = "#ca7575ff";
     }
 });
-

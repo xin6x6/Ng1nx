@@ -51,11 +51,13 @@
   transform-origin: 50% 93px;
   transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
   animation: lid-screen infinite 7s ease;
+  animation-fill-mode: both;
   background-image: linear-gradient(45deg, rgba(0,0,0,0.34) 0%,rgba(0,0,0,0) 100%);
   background-position: left bottom;
   background-size: 300px 300px;
   box-shadow: inset 0 3px 7px rgba(255,255,255,0.5);
 }
+
 .screen .logo {
   position: absolute;
   width: 20px;
@@ -96,6 +98,16 @@
   position: relative;
   box-shadow: inset 0 0 2px rgba(0,0,0,1);
 }
+
+.screen .face-one .display .contents { 
+  position: relative;
+  left: calc(50% - 5px);
+  top:calc(50% - 10px);
+  width: 10px;
+  height: 10px;
+  overflow: hidden;
+}
+
 .screen .face-one .display .shade {
   position: absolute;
   left: 0;
@@ -126,8 +138,10 @@
   transform-origin: 50% bottom;
   transform: rotateX(-90deg);
   animation: lid-macbody infinite 7s ease;
+  animation-fill-mode: both;
   background-image: linear-gradient(45deg, rgba(0,0,0,0.24) 0%,rgba(0,0,0,0) 100%);
 }
+
 .macbody .face-one {
   width: 150px;
   height: 96px;
