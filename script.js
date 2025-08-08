@@ -1,5 +1,6 @@
 let topZIndex = 1;
 const dock = document.getElementById("dock");
+const menuBarText = document.getElementById("menuBarText");
 
 let minimized = false;
 let maximized = false;
@@ -8,21 +9,24 @@ let isResizing = false;
 let isDockHided = false;
 let offsetX = 0;
 let offsetY = 0;
-let currentFocus = "";
+let currentFocus = "window-Introduce";
 
 let previousPosition = {};
+
 
 function setupWindow(win) {
   const titleBar = win.querySelector(".title-bar");
 
-  titleBar.addEventListener("click", () => {
-    console.log("focus: " + win.id);
-    currentFocus = win.id;
-  });
-
 
 
   titleBar.addEventListener("mousedown", (e) => {
+
+    // menubar text change
+    console.log("focus: " + win.id);
+    currentFocus = win.id;
+    menuBarText.innerText = currentFocus.split("-")[1];
+    //
+
     if (maximized || minimized) return;
     isDragging = true;
     win.style.transition = "none";
@@ -75,6 +79,11 @@ function setupWindow(win) {
   const dockIcon = document.querySelector(`#dock-app-icon[data-window-id="${win.id}"]`);
   if (dockIcon) {
     dockIcon.addEventListener("click", () => {
+      topZIndex++;
+      win.style.zIndex = topZIndex;
+      currentFocus = win.id;
+      menuBarText.innerText = currentFocus.split("-")[1];
+      //
       if (win.dataset.minimized === "true" || win.style.display === "none") {
         win.style.display = "flex";
         win.style.transition = "none";
@@ -221,4 +230,17 @@ function showDock() {
   isDockHided = false;
 }
 
+
 document.querySelectorAll(".macos-window").forEach(setupWindow);
+
+// 在页面加载完成后自动最大化 #window-Introduce
+window.addEventListener("DOMContentLoaded", () => {
+  const introWin = document.getElementById("window-Introduce");
+  if (introWin) {
+    // setupWindow 已在前面对所有 .macos-window 调用，这里只需模拟点击绿色按钮
+    const greenBtn = introWin.querySelector("#green-btn");
+    if (greenBtn) {
+      greenBtn.click();
+    }
+  }
+});
