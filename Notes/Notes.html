@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>💬 留言板</h1>
+        <h1>留言板</h1>
 
         <!-- 提交留言 -->
         <form id="msgForm" class="message-form">
@@ -15,6 +15,10 @@
             <textarea name="message" placeholder="留言内容" required></textarea>
             <button type="submit">提交留言</button>
         </form>
+        <div>
+            <button class="button" id="refresh">刷新</button>
+        </div>
+        
 
         <!-- 留言列表 -->
         <div id="messages" class="message-list">

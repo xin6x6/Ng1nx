@@ -1,5 +1,6 @@
 const messagesContainer = document.getElementById('messages');
 const form = document.getElementById('msgForm');
+const refreshButton = document.getElementById('refresh');
 
 // 加载留言
 async function loadMessages() {
@@ -50,5 +51,13 @@ function escapeHTML(str) {
     }[tag]));
 }
 
+refreshButton.addEventListener('click', async function () {
+    alert("刷新");
+    loadMessages();
+    this.textContent="刷新完成";
+    setTimeout(() => this.textContent = '刷新', 1500);
+})
+
 // 初始化
 loadMessages();
+setInterval(loadMessages, 5000);//automatically refresh messages every 5 seconds
