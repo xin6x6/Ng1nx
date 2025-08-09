@@ -1,0 +1,68 @@
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('../font/Comfortaa-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Comfortaa', sans-serif;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    background: #222;
+    border-radius: 26px;
+    box-shadow:
+        0 0 5px #8e2de2,
+        0 0 15px #8e2de2,
+        inset 0 0 10px #7a00ff;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    background: #8e2de2;
+    border-radius: 50%;
+    box-shadow:
+        0 0 5px #8e2de2,
+        0 0 10px #8e2de2;
+    transition: 0.4s;
+}
+
+input:checked+.slider {
+    background: #5f27cd;
+    box-shadow:
+        0 0 8px #6f42c1,
+        0 0 18px #6f42c1,
+        inset 0 0 12px #9154ff;
+}
+
+input:checked+.slider:before {
+    transform: translateX(24px);
+    background: #c084fc;
+    box-shadow:
+        0 0 8px #c084fc,
+        0 0 15px #c084fc;
+}
