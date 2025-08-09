@@ -52,7 +52,6 @@ function escapeHTML(str) {
 }
 
 refreshButton.addEventListener('click', async function () {
-    alert("刷新");
     loadMessages();
     this.textContent="刷新完成";
     setTimeout(() => this.textContent = '刷新', 1500);
