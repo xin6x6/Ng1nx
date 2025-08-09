@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Luobo Minecraft — 服务器首页</title>
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@300;400;600;800&display=swap" -->
+    <!-- rel="stylesheet"> -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <div class="brand">
+                <img class="logo" src="../icon/minecraft.png">
+                <div>
+                    <div style="font-weight:800">Luobo Minecraft</div>
+                    <div class="muted" style="font-size:12px">纯净生存</div>
+                </div>
+            </div>
+            <nav>
+                <a href="#features">特色</a>
+                <a href="#rules">规则</a>
+                <a href="#screenshots">截图</a>
+                <a class="cta" id="join-btn" href="#getInChat">加入服务器</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="hero-card">
+                <h1 class="title neon">Welcome to Luobo's Server</h1>
+                <p class="subtitle">一个温暖的服务器 — 生存与建筑</p>
+                <a class="big-cta" id="big-join" href="#getInChat">获取白名单</a>
+
+                <div class="features" style="margin-top:22px">
+                    <div class="feature">
+                        <h4>原生体验</h4>
+                        <p>原版纯生存服务器</p>
+                    </div>
+                    <div class="feature">
+                        <h4>友善社区</h4>
+                        <p>新手友好，“活跃”的管理团队</p>
+                    </div>
+                    <div class="feature">
+                        <h4>白名单开启</h4>
+                        <p>防止破坏性行为</p>
+                    </div>
+                </div>
+
+                <div class="gallery" id="screenshots">
+                    <div class="shot">Screenshot 1</div>
+                    <div class="shot">Screenshot 2</div>
+                    <div class="shot">Screenshot 3</div>
+                </div>
+            </div>
+
+            <aside class="server-box">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                    <div>
+                        <div class="muted">服务器地址</div>
+                        <div class="ip" id="server-ip">119.45.176.54:55555</div>
+                    </div>
+                    <div style="text-align:right">
+                        <div class="muted">在线人数</div>
+                        <div style="font-weight:800">0 / 100</div>
+                    </div>
+                </div>
+
+                <div class="small">版本: 1.21.4 • 核心: Paper • 白名单: 开启</div>
+
+                <div class="btn-row">
+                    <button class="btn" id="copy-ip">复制地址</button>
+                    <a class="btn" id="discord-link" href="#getInChat">加入群聊</a>
+                </div>
+
+                <div style="margin-top:12px;font-size:13px;color:var(--muted)">加入 <code
+                        style="background:rgba(255,255,255,0.03);padding:2px 6px;border-radius:6px;margin-left:6px">白名单</code>
+                    后输入IP直接连接</div>
+            </aside>
+        </section>
+
+        <section id="features" class="hero-card">
+            <h3 style="margin-top:0">服务器特色</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+                <div
+                    style="padding:12px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);border:1px solid rgba(255,255,255,0.03)">
+                    <h4 style="margin:0 0 6px">高自由度</h4>
+                    <p class="muted">无过多约束, 自由生存与建造</p>
+                </div>
+                <div
+                    style="padding:12px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);border:1px solid rgba(255,255,255,0.03)">
+                    <h4 style="margin:0 0 6px">良好体验</h4>
+                    <p class="muted">关照新人, 带领熟悉服务器</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="rules" class="hero-card" style="margin-top:16px">
+            <h3 style="margin-top:0">服务器规则</h3>
+            <ol style="color:var(--muted)" class="muted">
+                <li>本服务器为原版生存服</li>
+                <li>新进群的请务必把群昵称改为游戏id</li>
+                <li>服务器开启离线登陆</li>
+            </ol>
+            <div style="margin-top:12px"><button class="big-cta" id="open-rules">显示完整规则</button></div>
+        </section>
+
+        <section id="getInChat" class="hero-card">
+            <h3 style="margin-top: 0;">加入群聊</h3>
+            <img class="minecraftGroupImg" src="../icon/minecraftGroup.jpeg">
+            <li>加入我们的微信群聊以获取白名单</li>
+        </section>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-back" id="modal-back">
+        <div class="modal">
+            <h3 style="margin-top:0">完整规则</h3>
+            <p class="muted">请在加入服务器前阅读并遵守以下规则：</p>
+            <ul class="muted">
+                <li>本服务器为原版生存服</li>
+                <li>新进群的请务必把群昵称改为游戏id</li>
+                <li>服务器开启离线登陆</li>
+                <li>万用皮肤补丁下载网址如下：https://wwfi.lanzouu.com/iuW9Z2yuqv0j</li>
+                <li>服务器加白名单联系服主或@管理</li>
+                <li>服务器非必要禁止开飞天加速及其他辅助mod</li>
+            </ul>
+            <div style="text-align:right;margin-top:12px"><button class="btn" id="close-modal">关闭</button></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

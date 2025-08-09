@@ -50,6 +50,20 @@
   </div>
 
 
+  <div id="window-Minecraft" class="macos-window" style="display: none;">
+    <div id="title-bar" class="title-bar noselect">
+      <div class="traffic-lights noselect">
+        <img class="traffic-light-svg noselect" id="red-btn" src="icon/closeNormal.svg" draggable="false" />
+        <img class="traffic-light-svg noselect" id="yellow-btn" src="icon/minimizeNormal.svg" draggable="false" />
+        <img class="traffic-light-svg noselect" id="green-btn" src="icon/maximizeNormal.svg" draggable="false" />
+      </div>
+    </div>
+    <div class="content">
+      <iframe id="iframe-content" src="Minecraft/Minecraft.html"></iframe>
+    </div>
+  </div>
+
+
   <div id="window-LaunchPad" style="display: none;">
     <iframe src="LaunchPad/LaunchPad.html" frameborder="0"></iframe>
   </div> 
@@ -64,6 +78,8 @@
     <div class="dock-icon" id="dock-app-icon" data-window-id="window-Settings"> <img src="icon/settings.png"
         draggable="false" /> </div>
     <div class="dock-icon" id="dock-app-icon" data-window-id="window-LaunchPad"> <img src="icon/LaunchPad.png"
+        draggable="false" /> </div>
+    <div class="dock-icon" id="dock-app-icon" data-window-id="window-Minecraft"> <img src="icon/minecraft.png"
         draggable="false" /> </div>
   </div>
 
