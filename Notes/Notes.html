@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>留言板</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>💬 留言板</h1>
+
+        <!-- 提交留言 -->
+        <form id="msgForm" class="message-form">
+            <input name="name" placeholder="昵称" required>
+            <textarea name="message" placeholder="留言内容" required></textarea>
+            <button type="submit">提交留言</button>
+        </form>
+
+        <!-- 留言列表 -->
+        <div id="messages" class="message-list">
+            <p class="loading">正在加载留言...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

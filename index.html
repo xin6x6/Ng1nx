@@ -35,7 +35,6 @@
 
 
 
-
   <div id="window-Settings" class="macos-window" style="display: none;">
     <div id="title-bar" class="title-bar noselect">
       <div class="traffic-lights noselect">
@@ -62,6 +61,47 @@
       <iframe id="iframe-content" src="Minecraft/Minecraft.html"></iframe>
     </div>
   </div>
+  
+  <div id="window-Chemistry" class="macos-window" style="display: none;">
+    <div id="title-bar" class="title-bar noselect">
+      <div class="traffic-lights noselect">
+        <img class="traffic-light-svg noselect" id="red-btn" src="icon/closeNormal.svg" draggable="false" />
+        <img class="traffic-light-svg noselect" id="yellow-btn" src="icon/minimizeNormal.svg" draggable="false" />
+        <img class="traffic-light-svg noselect" id="green-btn" src="icon/maximizeNormal.svg" draggable="false" />
+      </div>
+    </div>
+    <div class="content">
+      <iframe id="iframe-content" src="https://ptable.com/#Properties"></iframe>
+    </div>
+  </div>
+
+  <div id="window-Math" class="macos-window" style="display: none;">
+    <div id="title-bar" class="title-bar noselect">
+      <div class="traffic-lights noselect">
+        <img class="traffic-light-svg noselect" id="red-btn" src="icon/closeNormal.svg" draggable="false" />
+        <img class="traffic-light-svg noselect" id="yellow-btn" src="icon/minimizeNormal.svg" draggable="false" />
+        <img class="traffic-light-svg noselect" id="green-btn" src="icon/maximizeNormal.svg" draggable="false" />
+      </div>
+    </div>
+    <div class="content">
+      <iframe id="iframe-content" src="https://desmos.com"></iframe>
+    </div>
+  </div>
+
+  <div id="window-Notes" class="macos-window" style="display: none;">
+    <div id="title-bar" class="title-bar noselect">
+      <div class="traffic-lights noselect">
+        <img class="traffic-light-svg noselect" id="red-btn" src="icon/closeNormal.svg" draggable="false" />
+        <img class="traffic-light-svg noselect" id="yellow-btn" src="icon/minimizeNormal.svg" draggable="false" />
+        <img class="traffic-light-svg noselect" id="green-btn" src="icon/maximizeNormal.svg" draggable="false" />
+      </div>
+    </div>
+    <div class="content">
+      <iframe id="iframe-content" src="Notes/Notes.html"></iframe>
+    </div>
+  </div>
+
+
 
 
   <div id="window-LaunchPad" style="display: none;">
@@ -74,16 +114,25 @@
 
   <div class="dock noselect" id="dock">
     <div class="dock-icon" id="dock-app-icon" data-window-id="window-Introduce"> <img src="icon/HomePage.png"
-        draggable="false" /> </div>
+        draggable="false" />
+        <span id="page_uv"></span>
+      </div>
     <div class="dock-icon" id="dock-app-icon" data-window-id="window-Settings"> <img src="icon/settings.png"
         draggable="false" /> </div>
     <div class="dock-icon" id="dock-app-icon" data-window-id="window-LaunchPad"> <img src="icon/LaunchPad.png"
         draggable="false" /> </div>
     <div class="dock-icon" id="dock-app-icon" data-window-id="window-Minecraft"> <img src="icon/minecraft.png"
         draggable="false" /> </div>
+    <div class="dock-icon" id="dock-app-icon" data-window-id="window-Chemistry"> <img src="icon/Chemistry.png"
+        draggable="false" /> </div>
+    <div class="dock-icon" id="dock-app-icon" data-window-id="window-Math"> <img src="icon/Math.png"
+        draggable="false" /> </div>
+    <div class="dock-icon" id="dock-app-icon" data-window-id="window-Notes"> <img src="icon/Math.png"
+        draggable="false" /> </div>
   </div>
 
   <script src="script.js"></script>
+  <script defer src="//webviso.yestool.org/js/index.min.js"></script>
 </body>
 
 </html>

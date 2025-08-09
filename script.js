@@ -104,6 +104,7 @@ function setupWindow(win) {
   //window
   function closeWindow() {
     win.style.display = "none";
+    maximized = false;
     showDock();
   }
 
