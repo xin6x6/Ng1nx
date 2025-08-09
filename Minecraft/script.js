@@ -16,6 +16,7 @@ document.getElementById('open-rules').addEventListener('click', () => modalBack.
 document.getElementById('close-modal').addEventListener('click', () => modalBack.style.display = 'none');
 modalBack.addEventListener('click', (e) => { if (e.target === modalBack) modalBack.style.display = 'none' });
 
+
 // // Join button behaviour (attempt to open minecraft:// or show instructions)
 // function tryOpenMinecraft() {
 //     // try to open the minecraft protocol (desktop) — browsers often block, so gracefully fallback
@@ -39,15 +40,32 @@ function updatePlayersDemo() {
         .then(data => {
             if (data.online) {
                 el.textContent = data.players.online + ' / ' + data.players.max;
+                console.log(data.players.online);
             } else {
-                el.textContent = '离线';
+                el.textContent = '本地网络不佳, 请参照我的世界多人游戏内的信息';
             }
         })
         .catch(() => {
-            el.textContent = '离线';
+            el.textContent = '本地网络不佳, 请参照我的世界多人游戏内的信息';
         });
 }
 updatePlayersDemo(); setInterval(updatePlayersDemo, 8000);
+document.getElementById('refreshOnlines').addEventListener('click', async function () {
+    try {
+        await updatePlayersDemo();
+        this.textContent = '已刷新!';
+        setTimeout(() => this.textContent = '刷新', 1500);
+    } catch (e) {
+        alert('无法刷新');
+    }
+});
+
+
+document.getElementById('refreshOnlines').addEventListener('click', async function () {
+    await updatePlayersDemo();
+    this.textContent = '已刷新!';
+    setTimeout(() => this.textContent = '刷新', 1500);
+});
 
 // Replace screenshot placeholders with images if the site owner provides links via JS variable
 (function () {
