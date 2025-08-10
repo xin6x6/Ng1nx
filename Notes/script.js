@@ -1,43 +1,42 @@
 let lastMessagesHTML = '';
+let lastMessageTime = "1970-01-01T00:00:00Z"; // 记录最新消息时间
 const messagesContainer = document.getElementById('messages');
 const form = document.getElementById('msgForm');
 const refreshButton = document.getElementById('refresh');
 
-// 加载留言
-async function loadMessages() {
-    // 保存当前消息 HTML
-    let prevHTML = messagesContainer.innerHTML;
-    try {
-        const res = await fetch('/messages');
-        const msgs = await res.json();
-        if (msgs.length === 0) {
-            if (`<p class="loading">暂无留言</p>` === lastMessagesHTML) {
-                return;
-            }
-            messagesContainer.innerHTML = `<p class="loading">暂无留言</p>`;
-            lastMessagesHTML = messagesContainer.innerHTML;
-            return;
-        }
-        const newHTML = msgs.map(m => `
-            <div class="message-item">
-                <strong>${escapeHTML(m.name)}</strong>
-                <p>${escapeHTML(m.message)}</p>
-                <small>${new Date(m.created_at).toLocaleString()}</small>
-            </div>
-        `).join('');
-        if (newHTML == lastMessagesHTML) {
-            console.log("no change");
-            return;
-        }
+// 更新 UI
+function renderMessages(msgs) {
+    if (msgs.length === 0) return;
+    const newHTML = msgs.map(m => `
+        <div class="message-item">
+            <strong>${escapeHTML(m.name)}</strong>
+            <p>${escapeHTML(m.message)}</p>
+            <small>${new Date(m.created_at).toLocaleString()}</small>
+        </div>
+    `).join('');
+
+    if (newHTML !== lastMessagesHTML) {
         messagesContainer.innerHTML = newHTML;
-        lastMessagesHTML = messagesContainer.innerHTML;
-    } catch (err) {
-        if (`<p class="loading">加载失败，请稍后再试</p>` == lastMessagesHTML) {
-            return;
+        lastMessagesHTML = newHTML;
+    }
+
+    // 更新最新时间
+    lastMessageTime = msgs[0].created_at;
+}
+
+// 长轮询函数
+async function longPollMessages() {
+    try {
+        const res = await fetch(`/messages?since=${encodeURIComponent(lastMessageTime)}`);
+        const msgs = await res.json();
+        if (msgs.length > 0) {
+            renderMessages(msgs);
         }
-        messagesContainer.innerHTML = `<p class="loading">加载失败，请稍后再试</p>`;
-        lastMessagesHTML = messagesContainer.innerHTML;
-        console.error(err);
+    } catch (err) {
+        console.error("长轮询出错", err);
+        await new Promise(r => setTimeout(r, 3000)); // 出错时等3秒重试
+    } finally {
+        longPollMessages();
     }
 }
 
@@ -52,7 +51,6 @@ form.addEventListener('submit', async e => {
             body: JSON.stringify(data)
         });
         form.reset();
-        loadMessages();
     } catch (err) {
         alert("提交失败，请重试");
         console.error(err);
@@ -68,11 +66,12 @@ function escapeHTML(str) {
 }
 
 refreshButton.addEventListener('click', async function () {
-    loadMessages();
+    lastMessageTime = "1970-01-01T00:00:00Z"; // 手动刷新时强制重新加载全部
+    messagesContainer.innerHTML = "";
+    longPollMessages();
     this.textContent="刷新完成";
     setTimeout(() => this.textContent = '刷新', 1500);
-})
+});
 
 // 初始化
-loadMessages();
-setInterval(loadMessages, 60000);//automatically refresh messages every 60 seconds
+longPollMessages();
