@@ -26,6 +26,7 @@ async function loadMessages() {
             </div>
         `).join('');
         if (newHTML == lastMessagesHTML) {
+            console.log("no change");
             return;
         }
         messagesContainer.innerHTML = newHTML;
