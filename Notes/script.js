@@ -4,7 +4,7 @@ const refreshButton = document.getElementById('refresh');
 
 // 加载留言
 async function loadMessages() {
-    messagesContainer.innerHTML = `<p class="loading">正在加载留言...</p>`;
+    // messagesContainer.innerHTML = `<p class="loading">正在加载留言...</p>`;
     try {
         const res = await fetch('/messages');
         const msgs = await res.json();
@@ -59,4 +59,4 @@ refreshButton.addEventListener('click', async function () {
 
 // 初始化
 loadMessages();
-setInterval(loadMessages, 5000);//automatically refresh messages every 5 seconds
+setInterval(loadMessages, 60000);//automatically refresh messages every 5 seconds
