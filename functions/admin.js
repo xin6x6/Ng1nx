@@ -1,4 +1,4 @@
-const ADMIN_PASSWORD = ENV.ADMIN_PASSWORD;  // 从环境变量读取
+const ADMIN_PASSWORD = context.env.ADMIN_PASSWORD;
 
 // 统一校验管理员密码
 function checkAdminPassword(context) {
