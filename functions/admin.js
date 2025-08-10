@@ -1,7 +1,5 @@
-const ADMIN_PASSWORD = context.env.ADMIN_PASSWORD;
-
 // 统一校验管理员密码
-function checkAdminPassword(context) {
+function checkAdminPassword(context, ADMIN_PASSWORD) {
     const password = context.request.headers.get('X-Admin-Password');
     if (password !== ADMIN_PASSWORD) {
         return false;
@@ -10,7 +8,8 @@ function checkAdminPassword(context) {
 }
 
 export async function onRequestGet(context) {
-    if (!checkAdminPassword(context)) {
+    const ADMIN_PASSWORD = context.env.ADMIN_PASSWORD;
+    if (!checkAdminPassword(context, ADMIN_PASSWORD)) {
         return new Response('Unauthorized', { status: 401 });
     }
     const { results } = await context.env.DB.prepare("SELECT * FROM messages ORDER BY created_at DESC").all();
@@ -20,7 +19,8 @@ export async function onRequestGet(context) {
 }
 
 export async function onRequestPut(context) {
-    if (!checkAdminPassword(context)) {
+    const ADMIN_PASSWORD = context.env.ADMIN_PASSWORD;
+    if (!checkAdminPassword(context, ADMIN_PASSWORD)) {
         return new Response('Unauthorized', { status: 401 });
     }
     const { id } = context.params;
@@ -37,7 +37,8 @@ export async function onRequestPut(context) {
 }
 
 export async function onRequestDelete(context) {
-    if (!checkAdminPassword(context)) {
+    const ADMIN_PASSWORD = context.env.ADMIN_PASSWORD;
+    if (!checkAdminPassword(context, ADMIN_PASSWORD)) {
         return new Response('Unauthorized', { status: 401 });
     }
     const { id } = context.params;
