@@ -16,8 +16,8 @@ function renderMessages(msgs) {
     `).join('');
 
     if (newHTML !== lastMessagesHTML) {
-        messagesContainer.innerHTML = newHTML;
-        lastMessagesHTML = newHTML;
+        messagesContainer.insertAdjacentHTML('afterbegin', newHTML);
+        lastMessagesHTML = messagesContainer.innerHTML;
     }
 
     // 更新最新时间
