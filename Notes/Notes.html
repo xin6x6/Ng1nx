@@ -4,6 +4,128 @@
     <meta charset="UTF-8">
     <title>留言板</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: #121212;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #eee;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 700px;
+            box-shadow: 0 0 30px rgba(100, 100, 255, 0.3);
+        }
+        h1 {
+            font-size: 3rem;
+            color: #c0aaff;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow:
+                0 0 5px #a57fff,
+                0 0 10px #a57fff,
+                0 0 20px #8e7fff,
+                0 0 30px #7a6fff,
+                0 0 40px #6a5fff,
+                0 0 50px #5a4fff,
+                0 0 75px #4a3fff;
+        }
+        .message-item {
+            background: rgba(20, 20, 40, 0.8);
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow:
+                0 0 5px #9b59b6,
+                0 0 10px #8e44ad,
+                0 0 20px #2980b9,
+                0 0 30px #3498db;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: #ddd;
+        }
+        .message-item:hover {
+            transform: scale(1.05);
+            box-shadow:
+                0 0 10px #bb8fce,
+                0 0 20px #9b59b6,
+                0 0 30px #5499c7,
+                0 0 40px #5dade2,
+                0 0 50px #85c1e9;
+        }
+        .message-form input,
+        .message-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border: 1px solid #555;
+            background: rgba(255, 255, 255, 0.05);
+            color: #eee;
+            box-shadow:
+                inset 0 0 8px rgba(138, 43, 226, 0.5),
+                0 0 5px rgba(138, 43, 226, 0.4);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-size: 1rem;
+            resize: vertical;
+        }
+        .message-form input:focus,
+        .message-form textarea:focus {
+            border-color: #9b59b6;
+            box-shadow:
+                0 0 8px #9b59b6,
+                inset 0 0 10px #9b59b6,
+                0 0 15px #8e44ad;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        .message-form button,
+        .button {
+            cursor: pointer;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            border: none;
+            color: white;
+            font-weight: 600;
+            background: linear-gradient(270deg, #8e44ad, #3498db, #9b59b6, #2980b9);
+            background-size: 200% auto;
+            animation: gradientMove 3s linear infinite;
+            box-shadow:
+                0 0 10px #8e44ad,
+                0 0 20px #3498db;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            user-select: none;
+        }
+        .message-form button:hover,
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow:
+                0 0 15px #9b59b6,
+                0 0 30px #5dade2,
+                0 0 40px #85c1e9;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
