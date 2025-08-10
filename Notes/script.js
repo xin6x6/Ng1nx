@@ -27,7 +27,7 @@ function renderMessages(msgs) {
 // 长轮询函数
 async function longPollMessages() {
     try {
-        const res = await fetch(`/messages?since=${encodeURIComponent(lastMessageTime)}`);
+        const res = await fetch(`/admin/messages?since=${encodeURIComponent(lastMessageTime)}`);
         const msgs = await res.json();
         if (msgs.length > 0) {
             renderMessages(msgs);
@@ -45,7 +45,7 @@ form.addEventListener('submit', async e => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(form).entries());
     try {
-        await fetch('/messages', {
+        await fetch('/admin/messages', { // changes
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
