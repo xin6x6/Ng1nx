@@ -111,6 +111,7 @@ function setupWindow(win) {
   //dock
   // minimize to dock
   function minimizeToDock() {
+    maximized = false;
     showDock();
     const iconRect = dockIcon.getBoundingClientRect();
     const winRect = win.getBoundingClientRect();
