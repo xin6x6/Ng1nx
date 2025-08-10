@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>留言板管理员</title>
+    <style>
+        body {
+            background: #0f0f1a;
+            color: #fff;
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        #adminPanel,
+        #login {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        input,
+        textarea,
+        button {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0;
+            border-radius: 6px;
+            border: none;
+        }
+
+        button {
+            background: linear-gradient(90deg, #7a00ff, #00d0ff);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .message-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            box-shadow: 0 0 8px #7a00ff;
+            position: relative;
+        }
+
+        .message-item textarea {
+            width: 100%;
+            height: 60px;
+            background: transparent;
+            color: white;
+            border: 1px solid #7a00ff;
+            border-radius: 6px;
+            resize: vertical;
+        }
+
+        .btn-group {
+            margin-top: 8px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 8px;
+            border-radius: 6px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-save {
+            background: #4caf50;
+            color: white;
+        }
+
+        .btn-delete {
+            background: #f44336;
+            color: white;
+        }
+
+        .error {
+            color: #ff4d4f;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="login">
+        <h2>管理员登录</h2>
+        <input type="password" id="password" placeholder="请输入管理员密码" />
+        <button id="loginBtn">登录</button>
+        <p id="loginError" class="error"></p>
+    </div>
+
+    <div id="adminPanel" style="display:none;">
+        <h1>留言管理</h1>
+        <div id="messages"></div>
+        <button id="logoutBtn" style="margin-top:20px; background:#f44336;">退出登录</button>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+
+</html>
