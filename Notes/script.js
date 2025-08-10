@@ -25,13 +25,13 @@ async function loadMessages() {
                 <small>${new Date(m.created_at).toLocaleString()}</small>
             </div>
         `).join('');
-        if (newHTML === lastMessagesHTML) {
+        if (newHTML == lastMessagesHTML) {
             return;
         }
         messagesContainer.innerHTML = newHTML;
         lastMessagesHTML = messagesContainer.innerHTML;
     } catch (err) {
-        if (`<p class="loading">加载失败，请稍后再试</p>` === lastMessagesHTML) {
+        if (`<p class="loading">加载失败，请稍后再试</p>` == lastMessagesHTML) {
             return;
         }
         messagesContainer.innerHTML = `<p class="loading">加载失败，请稍后再试</p>`;
@@ -74,4 +74,4 @@ refreshButton.addEventListener('click', async function () {
 
 // 初始化
 loadMessages();
-setInterval(loadMessages, 60000);//automatically refresh messages every 5 seconds
+setInterval(loadMessages, 60000);//automatically refresh messages every 60 seconds
