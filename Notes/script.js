@@ -1,26 +1,41 @@
+let lastMessagesHTML = '';
 const messagesContainer = document.getElementById('messages');
 const form = document.getElementById('msgForm');
 const refreshButton = document.getElementById('refresh');
 
 // 加载留言
 async function loadMessages() {
-    // messagesContainer.innerHTML = `<p class="loading">正在加载留言...</p>`;
+    // 保存当前消息 HTML
+    let prevHTML = messagesContainer.innerHTML;
     try {
         const res = await fetch('/messages');
         const msgs = await res.json();
         if (msgs.length === 0) {
+            if (`<p class="loading">暂无留言</p>` === lastMessagesHTML) {
+                return;
+            }
             messagesContainer.innerHTML = `<p class="loading">暂无留言</p>`;
+            lastMessagesHTML = messagesContainer.innerHTML;
             return;
         }
-        messagesContainer.innerHTML = msgs.map(m => `
+        const newHTML = msgs.map(m => `
             <div class="message-item">
                 <strong>${escapeHTML(m.name)}</strong>
                 <p>${escapeHTML(m.message)}</p>
                 <small>${new Date(m.created_at).toLocaleString()}</small>
             </div>
         `).join('');
+        if (newHTML === lastMessagesHTML) {
+            return;
+        }
+        messagesContainer.innerHTML = newHTML;
+        lastMessagesHTML = messagesContainer.innerHTML;
     } catch (err) {
+        if (`<p class="loading">加载失败，请稍后再试</p>` === lastMessagesHTML) {
+            return;
+        }
         messagesContainer.innerHTML = `<p class="loading">加载失败，请稍后再试</p>`;
+        lastMessagesHTML = messagesContainer.innerHTML;
         console.error(err);
     }
 }
