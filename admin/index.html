@@ -94,8 +94,26 @@
     </div>
 
     <div id="adminPanel" style="display:none;">
-        <h1>留言管理</h1>
-        <div id="messages"></div>
+        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+            <button id="tabMessages" class="btn" style="background:#7a00ff;">留言管理</button>
+            <button id="tabVisits" class="btn" style="background:#00d0ff;">访问记录</button>
+        </div>
+        <div id="messagesPanel">
+            <div id="messages"></div>
+        </div>
+        <div id="visitsPanel" style="display:none;">
+            <table style="width:100%; background:rgba(255,255,255,0.03); border-radius:8px; margin-top:10px;">
+                <thead>
+                    <tr>
+                        <th style="text-align:left; padding:8px;">ID</th>
+                        <th style="text-align:left; padding:8px;">IP 地址</th>
+                        <th style="text-align:left; padding:8px;">访问时间</th>
+                    </tr>
+                </thead>
+                <tbody id="visitsBody">
+                </tbody>
+            </table>
+        </div>
         <button id="logoutBtn" style="margin-top:20px; background:#f44336;">退出登录</button>
     </div>
 

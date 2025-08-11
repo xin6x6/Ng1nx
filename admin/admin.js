@@ -6,6 +6,12 @@
     const passwordInput = document.getElementById('password');
     const loginError = document.getElementById('loginError');
     const messagesDiv = document.getElementById('messages');
+    // Panels and tabs
+    const tabMessages = document.getElementById('tabMessages');
+    const tabVisits = document.getElementById('tabVisits');
+    const messagesPanel = document.getElementById('messagesPanel');
+    const visitsPanel = document.getElementById('visitsPanel');
+    const visitsBody = document.getElementById('visitsBody');
 
     let adminPassword = null;
 
@@ -24,6 +30,21 @@
         adminPanel.style.display = 'block';
         loginError.textContent = '';
         passwordInput.value = '';
+        // 默认显示留言面板，隐藏访问记录面板
+        if (messagesPanel) messagesPanel.style.display = '';
+        if (visitsPanel) visitsPanel.style.display = 'none';
+        // 初始化tab切换
+        if (tabMessages && tabVisits && messagesPanel && visitsPanel) {
+            tabMessages.onclick = () => {
+                messagesPanel.style.display = '';
+                visitsPanel.style.display = 'none';
+            };
+            tabVisits.onclick = () => {
+                messagesPanel.style.display = 'none';
+                visitsPanel.style.display = '';
+                loadVisits();
+            };
+        }
         loadMessages();
     }
 
@@ -134,3 +155,31 @@
         }
     }
 })();
+// 加载访问记录
+async function loadVisits() {
+    if (!visitsBody) return;
+    visitsBody.innerHTML = '<tr><td colspan="3">加载中...</td></tr>';
+    try {
+        const res = await fetch('/admin/visits', {
+            headers: { 'X-Admin-Password': adminPassword }
+        });
+        if (res.status !== 200) throw new Error('权限不足');
+        const visits = await res.json();
+        if (!visits.length) {
+            visitsBody.innerHTML = '<tr><td colspan="3">暂无访问记录</td></tr>';
+            return;
+        }
+        visitsBody.innerHTML = '';
+        visits.forEach(v => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                  <td>${escapeHTML(String(v.id))}</td>
+                  <td>${escapeHTML(v.ip)}</td>
+                  <td>${new Date(v.visit_time).toLocaleString()}</td>
+                `;
+            visitsBody.appendChild(tr);
+        });
+    } catch (err) {
+        visitsBody.innerHTML = '<tr><td colspan="3" class="error">加载失败或权限不足</td></tr>';
+    }
+}
