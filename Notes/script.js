@@ -51,6 +51,7 @@ form.addEventListener('submit', async e => {
             body: JSON.stringify(data)
         });
         form.reset();
+        longPollMessages();
     } catch (err) {
         alert("提交失败，请重试");
         console.error(err);
