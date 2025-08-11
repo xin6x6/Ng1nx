@@ -4,6 +4,7 @@ export async function onRequestGet(context) {
     try {
         // 获取用户 IP
         const ip = context.request.headers.get('CF-Connecting-IP') || 'unknown';
+        console.log('Client IP:', context.request.headers.get('CF-Connecting-IP'));
 
         // 插入数据库
         await context.env.DB.prepare(
