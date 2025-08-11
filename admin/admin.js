@@ -97,7 +97,7 @@
                 div.innerHTML = `
           <strong>${escapeHTML(m.name)}</strong>
           <textarea>${escapeHTML(m.message)}</textarea>
-          <small>${new Date(m.created_at).toLocaleString()}</small>
+          <small>${new Date(m.created_at).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })}</small>
           <div class="btn-group">
             <button class="btn btn-save">保存</button>
             <button class="btn btn-delete">删除</button>
@@ -134,7 +134,7 @@
                 tr.innerHTML = `
                   <td>${escapeHTML(String(v.id))}</td>
                   <td>${escapeHTML(v.ip)}</td>
-                  <td>${new Date(v.visit_time).toLocaleString()}</td>
+                  <td>${new Date(v.visit_time).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })}</td>
                 `;
                 visitsBody.appendChild(tr);
             });
