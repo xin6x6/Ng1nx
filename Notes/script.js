@@ -20,7 +20,7 @@ async function retractMessage(id) {
         return;
     }
     try {
-        const res = await fetch(`/messages/${id}`, {
+        const res = await fetch(`/admin/messages/${id}`, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ token })
