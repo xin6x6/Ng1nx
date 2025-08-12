@@ -44,7 +44,7 @@ function renderMessages(msgs) {
     const newHTML = msgs.map(m => `
         <div class="message-item">
             <strong>${escapeHTML(m.name)}</strong>
-            <button class="btn-retract" onclick="retractMessage('${m.id}')">撤回</button>
+            <button class="btn-retract" onclick="retractMessage('${m.id}'); longPollMessages() style="right=0px">撤回</button>
             <p>${escapeHTML(m.message)}</p>
             <small>${new Date(m.created_at).toLocaleString()}</small>
         </div>
