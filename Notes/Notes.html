@@ -53,6 +53,9 @@
                 0 0 30px #3498db;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             color: #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .message-item:hover {
             transform: scale(1.05);
@@ -62,6 +65,33 @@
                 0 0 30px #5499c7,
                 0 0 40px #5dade2,
                 0 0 50px #85c1e9;
+        }
+        .message-content {
+            flex: 1;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .btn-retract {
+            background: linear-gradient(270deg, #e74c3c, #c0392b);
+            border: none;
+            border-radius: 20px;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            margin-left: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow:
+                0 0 8px #e74c3c,
+                0 0 15px #c0392b;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            user-select: none;
+            flex-shrink: 0;
+        }
+        .btn-retract:hover {
+            transform: scale(1.1);
+            box-shadow:
+                0 0 12px #ff6f61,
+                0 0 20px #e74c3c;
         }
         .message-form input,
         .message-form textarea {
