@@ -4,12 +4,47 @@ const messagesContainer = document.getElementById('messages');
 const form = document.getElementById('msgForm');
 const refreshButton = document.getElementById('refresh');
 
+// 防止 XSS
+function escapeHTML(str) {
+    return str.replace(/[&<>'"]/g, tag => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;',
+        "'": '&#39;', '"': '&quot;'
+    }[tag]));
+}
+
+// 撤回消息函数
+async function retractMessage(id) {
+    const token = localStorage.getItem(`msg_token_${id}`);
+    if (!token) {
+        alert("无法找到撤回令牌，撤回失败");
+        return;
+    }
+    try {
+        const res = await fetch(`/messages/${id}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token })
+        });
+        if (!res.ok) {
+            const errData = await res.json();
+            alert(errData.message || "撤回失败");
+            return;
+        }
+        localStorage.removeItem(`msg_token_${id}`);
+        longPollMessages();
+    } catch (err) {
+        alert("撤回请求失败");
+        console.error(err);
+    }
+}
+
 // 更新 UI
 function renderMessages(msgs) {
     if (msgs.length === 0) return;
     const newHTML = msgs.map(m => `
         <div class="message-item">
             <strong>${escapeHTML(m.name)}</strong>
+            <button class="btn-retract" onclick="retractMessage('${m.id}')">撤回</button>
             <p>${escapeHTML(m.message)}</p>
             <small>${new Date(m.created_at).toLocaleString()}</small>
         </div>
@@ -45,11 +80,20 @@ form.addEventListener('submit', async e => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(form).entries());
     try {
-        await fetch('/admin/messages', { // changes
+        const res = await fetch('/admin/messages', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         });
+        if (!res.ok) {
+            alert("提交失败，请重试");
+            return;
+        }
+        const result = await res.json();
+        // 存储token
+        if (result.id && result.token) {
+            localStorage.setItem(`msg_token_${result.id}`, result.token);
+        }
         form.reset();
         longPollMessages();
     } catch (err) {
@@ -57,14 +101,6 @@ form.addEventListener('submit', async e => {
         console.error(err);
     }
 });
-
-// 防止 XSS
-function escapeHTML(str) {
-    return str.replace(/[&<>'"]/g, tag => ({
-        '&': '&amp;', '<': '&lt;', '>': '&gt;',
-        "'": '&#39;', '"': '&quot;'
-    }[tag]));
-}
 
 refreshButton.addEventListener('click', async function () {
     lastMessageTime = "1970-01-01T00:00:00Z"; // 手动刷新时强制重新加载全部
