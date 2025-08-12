@@ -23,8 +23,13 @@ export async function onRequestGet(context) {
     });
 }
 
-import crypto from 'node:crypto';
+function generateUUID() {
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
+}
 
+const token = generateUUID();
 export async function onRequestPost(context) {
     const { name, message } = await context.request.json();
     if (!name || !message) {
@@ -32,7 +37,7 @@ export async function onRequestPost(context) {
     }
 
     const createdAt = new Date().toISOString();
-    const token = crypto.randomUUID(); // 生成唯一 token
+    const token = generateUUID();// 生成唯一 token
 
     const { meta } = await context.env.DB.prepare(
         "INSERT INTO messages (name, message, created_at, author_token) VALUES (?, ?, ?, ?)"
