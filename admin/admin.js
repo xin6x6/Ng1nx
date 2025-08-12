@@ -107,6 +107,14 @@
                 div.querySelector('.btn-save').onclick = () => saveMessage(m.id, div.querySelector('textarea').value);
                 // 删除按钮
                 div.querySelector('.btn-delete').onclick = () => deleteMessage(m.id);
+                                // 撤回按钮 if author_token exists
+                if (m.author_token) {
+                    const retractBtn = document.createElement('button');
+                    retractBtn.className = 'btn btn-retract';
+                    retractBtn.textContent = '撤回';
+                    retractBtn.onclick = () => retractMessage(m.id, m.author_token);
+                    div.querySelector('.btn-group').insertBefore(retractBtn, div.querySelector('.btn-delete'));
+                }
                 messagesDiv.appendChild(div);
             });
         } catch (err) {
@@ -181,6 +189,28 @@
             }
         } catch {
             alert('删除请求失败');
+        }
+    }
+
+    // 撤回留言
+    async function retractMessage(id, token) {
+        if (!confirm('确认撤回该留言吗？')) return;
+        try {
+            const res = await fetch(`/messages/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ token: token })
+            });
+            if (res.status === 200) {
+                alert('撤回成功');
+                loadMessages();
+            } else {
+                alert('撤回失败');
+            }
+        } catch {
+            alert('撤回请求失败');
         }
     }
 })();

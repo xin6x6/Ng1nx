@@ -23,17 +23,22 @@ export async function onRequestGet(context) {
     });
 }
 
+import crypto from 'node:crypto';
+
 export async function onRequestPost(context) {
     const { name, message } = await context.request.json();
     if (!name || !message) {
         return new Response(JSON.stringify({ error: "Name and message required" }), { status: 400 });
     }
-    const createdAt = new Date().toISOString();
-    await context.env.DB.prepare(
-        "INSERT INTO messages (name, message, created_at) VALUES (?, ?, ?)"
-    ).bind(name, message, createdAt).run();
 
-    return new Response(JSON.stringify({ success: true }), {
+    const createdAt = new Date().toISOString();
+    const token = crypto.randomUUID(); // 生成唯一 token
+
+    const { meta } = await context.env.DB.prepare(
+        "INSERT INTO messages (name, message, created_at, author_token) VALUES (?, ?, ?, ?)"
+    ).bind(name, message, createdAt, token).run();
+
+    return new Response(JSON.stringify({ success: true, token, id: meta.last_row_id }), {
         headers: { "Content-Type": "application/json" }
     });
 }

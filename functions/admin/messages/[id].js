@@ -38,14 +38,64 @@ export async function onRequestPut(context) {
 
 export async function onRequestDelete(context) {
     const ADMIN_PASSWORD = context.env.ADMIN_PASSWORD;
-    if (!checkAdminPassword(context, ADMIN_PASSWORD)) {
-        return new Response('Unauthorized', { status: 401 });
-    }
+    const adminPassword = context.request.headers.get('X-Admin-Password');
     const { id } = context.params;
+    // If admin password is provided and correct, allow delete
+    if (adminPassword) {
+        if (adminPassword !== ADMIN_PASSWORD) {
+            return new Response(JSON.stringify({ success: false, message: "Invalid admin password." }), {
+                status: 401,
+                headers: { "Content-Type": "application/json" }
+            });
+        }
+        await context.env.DB.prepare("DELETE FROM messages WHERE id = ?")
+            .bind(id)
+            .run();
+        return new Response(JSON.stringify({ success: true, message: "Message deleted by admin." }), {
+            headers: { "Content-Type": "application/json" }
+        });
+    }
+
+    // If no admin password, check author_token in request body
+    let token;
+    try {
+        const body = await context.request.json();
+        token = body.token;
+    } catch (e) {
+        return new Response(JSON.stringify({ success: false, message: "Missing or invalid request body." }), {
+            status: 400,
+            headers: { "Content-Type": "application/json" }
+        });
+    }
+
+    if (!token) {
+        return new Response(JSON.stringify({ success: false, message: "Missing token." }), {
+            status: 400,
+            headers: { "Content-Type": "application/json" }
+        });
+    }
+    // Get author_token from DB for this message
+    const { results } = await context.env.DB.prepare("SELECT author_token FROM messages WHERE id = ?")
+        .bind(id)
+        .all();
+    if (!results || results.length === 0) {
+        return new Response(JSON.stringify({ success: false, message: "Message not found." }), {
+            status: 404,
+            headers: { "Content-Type": "application/json" }
+        });
+    }
+    const author_token = results[0].author_token;
+    if (token !== author_token) {
+        return new Response(JSON.stringify({ success: false, message: "Invalid author token." }), {
+            status: 403,
+            headers: { "Content-Type": "application/json" }
+        });
+    }
+    // Token matches, allow delete
     await context.env.DB.prepare("DELETE FROM messages WHERE id = ?")
         .bind(id)
         .run();
-    return new Response(JSON.stringify({ success: true }), {
+    return new Response(JSON.stringify({ success: true, message: "Message deleted by author." }), {
         headers: { "Content-Type": "application/json" }
     });
 }
