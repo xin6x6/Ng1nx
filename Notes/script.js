@@ -136,4 +136,5 @@ refreshButton.addEventListener('click', async function () {
 });
 
 // 初始化时完整加载一次留言
+longPollMessages();
 loadAllMessages();
