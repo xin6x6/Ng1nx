@@ -28,8 +28,6 @@ function generateUUID() {
         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     );
 }
-
-const token = generateUUID();
 export async function onRequestPost(context) {
     const { name, message } = await context.request.json();
     if (!name || !message) {
