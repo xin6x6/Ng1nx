@@ -26,41 +26,66 @@ async function retractMessage(id) {
             body: JSON.stringify({ token })
         });
         if (!res.ok) {
-            const errData = await res.json();
-            alert(errData.message || "撤回失败");
+            let errMsg = "撤回失败";
+            try {
+                const errData = await res.json();
+                errMsg = errData.message || errMsg;
+            } catch {
+                try {
+                    errMsg = await res.text();
+                } catch {}
+            }
+            alert(errMsg);
             return;
         }
         localStorage.removeItem(`msg_token_${id}`);
         form.reset();
-        longPollMessages();
+        await loadAllMessages();  // 撤回成功后完整刷新
     } catch (err) {
         alert("撤回请求失败");
         console.error(err);
     }
 }
 
-// 更新 UI
+// 更新 UI，替换内容
 function renderMessages(msgs) {
-    if (msgs.length === 0) return;
+    if (msgs.length === 0) {
+        messagesContainer.innerHTML = '';
+        lastMessagesHTML = '';
+        lastMessageTime = "1970-01-01T00:00:00Z";
+        return;
+    }
     const newHTML = msgs.map(m => `
-        <div class="message-item">
+        <div class="message-item" data-id="${m.id}">
             <strong>${escapeHTML(m.name)}</strong>
-            <button class="btn-retract" onclick="retractMessage('${m.id}')" style="right=0px">撤回</button>
+            <button class="btn-retract" onclick="retractMessage('${m.id}')">撤回</button>
             <p>${escapeHTML(m.message)}</p>
             <small>${new Date(m.created_at).toLocaleString()}</small>
         </div>
     `).join('');
 
     if (newHTML !== lastMessagesHTML) {
-        messagesContainer.insertAdjacentHTML('afterbegin', newHTML);
-        lastMessagesHTML = messagesContainer.innerHTML;
+        messagesContainer.innerHTML = newHTML;  // 替换，不追加
+        lastMessagesHTML = newHTML;
     }
 
-    // 更新最新时间
     lastMessageTime = msgs[0].created_at;
 }
 
-// 长轮询函数
+// 请求并渲染所有留言（完整刷新）
+async function loadAllMessages() {
+    try {
+        const res = await fetch('/admin/messages');
+        if (!res.ok) throw new Error('获取全部留言失败');
+        const msgs = await res.json();
+        renderMessages(msgs);
+        lastMessageTime = msgs.length > 0 ? msgs[0].created_at : "1970-01-01T00:00:00Z";
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+// 长轮询函数（可以留着，也可以移除或改为定时刷新）
 async function longPollMessages() {
     try {
         const res = await fetch(`/admin/messages?since=${encodeURIComponent(lastMessageTime)}`);
@@ -96,20 +121,19 @@ form.addEventListener('submit', async e => {
             localStorage.setItem(`msg_token_${result.id}`, result.token);
         }
         form.reset();
-        longPollMessages();
+        await loadAllMessages();  // 提交成功后完整刷新
     } catch (err) {
         alert("提交失败，请重试");
         console.error(err);
     }
 });
 
+// 刷新按钮事件
 refreshButton.addEventListener('click', async function () {
-    lastMessageTime = "1970-01-01T00:00:00Z"; // 手动刷新时强制重新加载全部
-    messagesContainer.innerHTML = "";
-    longPollMessages();
+    await loadAllMessages();
     this.textContent="刷新完成";
     setTimeout(() => this.textContent = '刷新', 1500);
 });
 
-// 初始化
-longPollMessages();
+// 初始化时完整加载一次留言
+loadAllMessages();
