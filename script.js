@@ -250,6 +250,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
 const appleIcon = document.getElementById("appleIcon");
 appleIcon.addEventListener("click", () => {
-  window.location.href = "https://ng1nx.pages.dev/startUp/startUp";
+  window.location.href = "./startUp/startUp.html";
 });
 
