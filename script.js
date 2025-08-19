@@ -232,6 +232,7 @@ function showDock() {
   isDockHided = false;
 }
 
+// init end
 
 document.querySelectorAll(".macos-window").forEach(setupWindow);
 
@@ -246,3 +247,9 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+
+const appleLogo = document.getElementById("appleLogo");
+appleLogo.addEventListener("click", () => {
+  window.location.href = "https://www.apple.com/";
+});
+
