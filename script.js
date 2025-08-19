@@ -248,8 +248,8 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-const appleLogo = document.getElementById("appleLogo");
-appleLogo.addEventListener("click", () => {
+const appleIcon = document.getElementById("appleIcon");
+appleIcon.addEventListener("click", () => {
   window.location.href = "https://www.apple.com/";
 });
 
