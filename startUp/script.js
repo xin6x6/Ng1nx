@@ -5,6 +5,14 @@ const startUpAudio = document.getElementById("startUpAudio");
 let random = Math.random() / 3;
 console.log(random);
 
+if (window.requestFullscreen) {
+    window.requestFullscreen();
+} else if (window.webkitRequestFullscreen) { // Safari
+    window.webkitRequestFullscreen();
+} else if (window.msRequestFullscreen) { // IE
+    window.msRequestFullscreen();
+}
+
 function barFill() {
     barEmpty.style.opacity = "100";
     setTimeout(() => { //bar fill
@@ -14,7 +22,7 @@ function barFill() {
                 barFull.style.width = (i / 10000) * 250 + "px";
             }, i * random);
 
-            if(i >= 9999) {
+            if (i >= 9999) {
                 setTimeout(() => {
                     window.location.href = "../index.html";
                 }, 2000);
@@ -22,16 +30,16 @@ function barFill() {
         }
     }, 1500);
 
-    
+
 }
 
 setTimeout(() => { //logo delay
 
 
     startUpAudio.muted = false;
-    try{
+    try {
         startUpAudio.play();
-    } catch(err){
+    } catch (err) {
         console.log(err);
         setTimeout(() => {
             barFill();
