@@ -250,6 +250,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 const appleIcon = document.getElementById("appleIcon");
 appleIcon.addEventListener("click", () => {
+  hideDock();
   window.location.href = "./startUp/startUp.html";
 });
 

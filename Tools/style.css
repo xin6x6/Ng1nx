@@ -1,6 +1,13 @@
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('../font/Comfortaa-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
 body {
     margin: 0;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Confortaa', sans-serif;
     background-color: #0a0a0a;
     color: #fff;
 }

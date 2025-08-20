@@ -61,7 +61,7 @@ sidebarItems.forEach(item => {
                     errorSoundAiff.play().catch(() => {
                         errorSoundWav.play();
                     });
-                })
+                });
                 break;
             default:
                 content.innerHTML = `<h1>${label}</h1><p>There's nothing in ${label}.</p>`;

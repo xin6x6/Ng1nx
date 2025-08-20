@@ -1,14 +1,33 @@
 .alert {
     display: flex;
     align-items: center;
-    justify-content: center;
     position: absolute;
-    width: 100px;
-    height: 80px;
+    --width: 200px;
+    --height: 130px;
+    width: var(--width);
+    height: var(--height);
+    top: calc(30vh - var(--height) / 2);
+    left: calc(50vw - var(--width) / 2);
     border-radius: 25px;
     backdrop-filter: blur(25px) saturate(160%);
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
     overflow: hidden;
+}
+
+.alert-confirm {
+    position:absolute;
+    --width: 180px;
+    --height: 30px;
+    width: var(--width);
+    height: var(--height);
+    left: calc(50% - var(--width) / 2);
+    top: calc(80% - var(--height) / 2);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(25px) saturate(160%);
+    background: rgba(182, 81, 254, 0.5);
+    z-index: 999;
 }
