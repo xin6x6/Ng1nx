@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neon Audio Converter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>🌌 Neon Audio Converter</h1>
+        <div class="menu">
+            <label for="formatSelect">输出格式:</label>
+            <select id="formatSelect">
+                <option value="wav">WAV</option>
+                <option value="mp3">MP3</option>
+                <option value="ogg">OGG</option>
+            </select>
+        </div>
+    </header>
+    <main>
+        <!-- 上传按钮 -->
+        <input type="file" id="fileInput" multiple style="display:none" />
+        <button id="chooseFilesBtn">选择音频文件</button>
+        <div id="fileList" class="file-list"></div>
+    </main>
+    <footer>
+        <button id="downloadAllBtn">下载全部音频</button>
+    </footer>
+</div>
+
+<!-- 引入 ffmpeg.js WebAssembly 版本 -->
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.2/dist/ffmpeg.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

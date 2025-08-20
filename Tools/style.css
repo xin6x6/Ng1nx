@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #0a0a0a;
+    color: #fff;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: linear-gradient(90deg, #3700ff, #00ffe5);
+    text-shadow: 0 0 5px #b388ff, 0 0 10px #c56fff, 0 0 20px #aa00ff;
+}
+header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+.menu select {
+    background: #111;
+    border: 2px solid #aa00ff;
+    border-radius: 8px;
+    color: #fff;
+    padding: 0.3rem 0.5rem;
+    font-size: 1rem;
+}
+
+/* 上传按钮 */
+#chooseFilesBtn {
+    margin: 2rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: #3700ff;
+    color: #fff;
+    transition: all 0.3s;
+}
+#chooseFilesBtn:hover {
+    background: #00ffe5;
+    color: #000;
+}
+
+/* 文件列表 */
+.file-list {
+    margin: 1rem 2rem;
+}
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.05);
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+.file-item:hover {
+    background: rgba(255,255,255,0.15);
+}
+.file-item button {
+    background: #3700ff;
+    color: #fff;
+    border: none;
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.file-item button:hover {
+    background: #00ffe5;
+    color: #000;
+}
+
+/* 底部下载全部按钮 */
+footer {
+    text-align: center;
+    padding: 1rem;
+}
+#downloadAllBtn {
+    background: #aa00ff;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+#downloadAllBtn:hover {
+    background: #00ffe5;
+    color: #000;
+}
