@@ -28,7 +28,37 @@ sidebarItems.forEach(item => {
                     channel.postMessage({ type: 'showVisitedNumber', value: checkbox.checked });
                 });
                 break;
-
+            
+            case 'Sounds':
+                content.innerHTML = `
+                <h1>Sounds</h1>
+                <link rel="stylesheet" href="style.css">
+                <div class="settings-item neon-switch-container">
+                        <label for="error-sound">Error Sound</label>
+                        <select id="errorSoundSelect">
+                            <option value="Boop">Boop</option>
+                            <option value="Basso">Basso</option>
+                            <option value="Blow">Blow</option>
+                            <option value="Bottle">Bottle</option>
+                            <option value="Frog">Frog</option>
+                            <option value="Funk">Funk</option>
+                            <option value="Glass">Glass</option>
+                            <option value="Hero">Hero</option>
+                            <option value="Morse">Morse</option>
+                            <option value="Ping">Ping</option>
+                            <option value="Pop">Pop</option>
+                            <option value="Sosumi">Sosumi</option>
+                            <option value="Submarine">Submarine</option>
+                        </select>
+                    </div>
+                `;
+                const errorSoundSelection = document.getElementById("errorSoundSelect");
+                document.addEventListener("keydown", () => {
+                    console.log("keydown");
+                    const errorSound = new Audio(`../sound/error/${errorSoundSelection.value}.aiff`);
+                    errorSound.play();
+                })
+                break;
             default:
                 content.innerHTML = `<h1>${label}</h1><p>There's nothing in ${label}.</p>`;
         }
