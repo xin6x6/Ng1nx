@@ -28,7 +28,7 @@ sidebarItems.forEach(item => {
                     channel.postMessage({ type: 'showVisitedNumber', value: checkbox.checked });
                 });
                 break;
-            
+
             case 'Sounds':
                 content.innerHTML = `
                 <h1>Sounds</h1>
@@ -55,8 +55,12 @@ sidebarItems.forEach(item => {
                 const errorSoundSelection = document.getElementById("errorSoundSelect");
                 document.addEventListener("keydown", () => {
                     console.log("keydown");
-                    const errorSound = new Audio(`../sound/error/${errorSoundSelection.value}.aiff`);
-                    errorSound.play();
+                    const errorSoundAiff = new Audio(`../sound/error/aiff/${errorSoundSelection.value}.aiff`);
+                    const errorSoundWav = new Audio(`../sound/error/wav/${errorSoundSelection.value}.wav`);
+
+                    errorSoundAiff.play().catch(() => {
+                        errorSoundWav.play();
+                    });
                 })
                 break;
             default:
