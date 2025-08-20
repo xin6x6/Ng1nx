@@ -91,10 +91,40 @@ footer {
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 12px;
+        box-shadow:
+        0 0 5px #b388ff,
+        0 0 10px #c56fff,
+        0 0 20px #aa00ff,
+        0 0 30px #aa00ff;
     font-size: 1rem;
     cursor: pointer;
 }
 #downloadAllBtn:hover {
     background: #00ffe5;
     color: #000;
+}
+
+/* 拖拽区 */
+.drop-zone {
+    margin: 2rem;
+    border: 2px dashed #aa00ff;
+    border-radius: 12px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    color: #aa00ff;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.drop-zone.dragover {
+    border-color: #00ffe5;
+    color: #00ffe5;
+    background: rgba(55,0,255,0.1);
+}
+
+#fileInput { 
+    width: 100%;
+    height:100%;
 }
