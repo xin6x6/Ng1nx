@@ -178,6 +178,7 @@ function setupWindow(win) {
     });
   });
 
+  // Traffic Button
   function setupTrafficButton(btn, baseName, onClick, windows = win) {
 
     btn.addEventListener("mouseover", () => {
@@ -199,7 +200,7 @@ function setupWindow(win) {
 
 
   }
-
+  // For LaunchPad
   document.querySelectorAll("#dock-app-icon").forEach(icon => {
     icon.addEventListener("click", () => {
       const app = icon.dataset.windowId;
