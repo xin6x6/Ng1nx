@@ -107,7 +107,7 @@
                 div.querySelector('.btn-save').onclick = () => saveMessage(m.id, div.querySelector('textarea').value);
                 // 删除按钮
                 div.querySelector('.btn-delete').onclick = () => deleteMessage(m.id);
-                                // 撤回按钮 if author_token exists
+                // 撤回按钮 if author_token exists
                 if (m.author_token) {
                     const retractBtn = document.createElement('button');
                     retractBtn.className = 'btn btn-retract';
@@ -203,11 +203,20 @@
                 },
                 body: JSON.stringify({ token: token })
             });
-            if (res.status === 200) {
+            if (res.ok) {
                 alert('撤回成功');
                 loadMessages();
             } else {
-                alert('撤回失败');
+                let errorMsg = '撤回失败';
+                try {
+                    const text = await res.text();
+                    if (text) {
+                        errorMsg += `: ${text}`;
+                    }
+                } catch {
+                    // ignore parse error
+                }
+                alert(errorMsg);
             }
         } catch {
             alert('撤回请求失败');
