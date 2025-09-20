@@ -17,7 +17,10 @@
 
     <main>
         <box>
-            <!-- <span>Title</span> -->
+           <span>title</span>
+        </box>
+        <box>
+            <span>Title</span>
         </box>
     </main>
 
@@ -38,6 +41,9 @@
     body {
         background: var(--bg-color);
         padding: 20px;
+        height: 100vh;                  /* 让 body 高度占满屏幕 */
+        display: grid;
+        /*place-items: center;            !* 水平 + 垂直居中 *!*/
 
         header {
             animation: fadeInDown 0.8s ease-out;
@@ -78,43 +84,51 @@
 
     main {
         margin: 0 15px;
-        display: inline-block;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 20px;
+        justify-content: center; /* 居中整个网格 */
     }
 
     box {
         display: flex;
+        position: relative;
         align-content: center;
         min-width: 400px;
+        max-width: 400px;
         min-height: 230px;
-        background: var(--box-bg);
+        background-color: var(--box-bg);
         border-radius: 25px;
         box-shadow: var(--shadow);
         transition: var(--transition);
-    }
+        span {
+            display: block;
+            position: relative;
+            width: 100%;
+            height: auto;
 
-    box::before {
+            justify-content: center;
+            text-align: center;
+        }
+    }
+    box::after {
         display: flex;
         content: "";
-        position: relative;
-        background-color: rgb(236, 103, 101);
+        position: absolute;
+        background-color: rgb(246, 113, 111); /* 红灯 */
         width: 15px;
         height: 15px;
         border-radius: 50%;
         left: 15px;
         top: 15px;
+
+        /* 复制两个灯 */
+        box-shadow:
+                23px 0 rgb(242,202,68),   /* 黄灯 */
+                46px 0 rgb(67, 198, 90);  /* 绿灯 */
     }
 
-    box::after {
-        display: flex;
-        content: "";
-        position: relative;
-        background-color: rgb(214, 192, 68);
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        left: 23px;
-        top: 15px;
-    }
+
 
     box:hover {
         box-shadow: var(--shadow-hovering);
