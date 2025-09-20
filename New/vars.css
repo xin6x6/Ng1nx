@@ -1,0 +1,11 @@
+:root {
+    --bg-color: linear-gradient(45deg, #ffefef, #e8ffff);
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    --shadow-hovering: 0 15px 35px rgba(0, 0, 0, 0.15);
+    --transition: all 0.5s cubic-bezier(0.176, 0.885, 0.32, 1.1);
+    --black: #1e1e2c;
+    --white: #f8f9fa;
+    --gradient: linear-gradient(45deg, #3d3aff, #8547f8);
+    --font-color: #3d3aff;
+    --box-bg: rgba(255, 255, 255, 0.92);
+}

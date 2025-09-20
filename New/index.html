@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Ng1nx的主页!</title>
+    <link rel="stylesheet" href="./vars.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+
+<body>
+    <header>
+        <h1 class="h-center animate__animated animate__bounceIn" style="font-size:45px;">Ng1nx的个人主页
+        </h1>
+    </header>
+
+    <main>
+        <box>
+            <!-- <span>Title</span> -->
+        </box>
+    </main>
+
+</body>
+
+</html>
+
+<style>
+    @font-face {
+        font-family: 'Comfortaa';
+        src: url(./font/Comfortaa.ttf);
+    }
+
+    * {
+        font-family: 'Comfortaa', 'sans-serif';
+    }
+
+    body {
+        background: var(--bg-color);
+        padding: 20px;
+
+        header {
+            animation: fadeInDown 0.8s ease-out;
+            margin-bottom: 50px;
+
+            h1 {
+                font-size: 2.8rem;
+                background: var(--gradient);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                margin-top: 5px;
+                margin-bottom: 15px;
+                font-weight: 700;
+                letter-spacing: -0.5px;
+                position: relative;
+                display: inline-block;
+            }
+
+            h1::after {
+                content: "";
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 120px;
+                height: 4px;
+                background: var(--gradient);
+                border-radius: 2px;
+            }
+        }
+    }
+
+    .h-center {
+        display: flex;
+        justify-content: center;
+    }
+
+    main {
+        margin: 0 15px;
+        display: inline-block;
+    }
+
+    box {
+        display: flex;
+        align-content: center;
+        min-width: 400px;
+        min-height: 230px;
+        background: var(--box-bg);
+        border-radius: 25px;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+    }
+
+    box::before {
+        display: flex;
+        content: "";
+        position: relative;
+        background-color: rgb(236, 103, 101);
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        left: 15px;
+        top: 15px;
+    }
+
+    box::after {
+        display: flex;
+        content: "";
+        position: relative;
+        background-color: rgb(214, 192, 68);
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        left: 23px;
+        top: 15px;
+    }
+
+    box:hover {
+        box-shadow: var(--shadow-hovering);
+        transform: scale(1.02);
+    }
+
+    box:active {
+        box-shadow: var(--shadow);
+        transform: scale(0.99);
+    }
+</style>
