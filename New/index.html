@@ -13,17 +13,46 @@
     <header>
         <h1 class="h-center animate__animated animate__bounceIn" style="font-size:45px;">Ng1nx的个人主页
         </h1>
+        <script type="text/javascript">
+            function show_runtime() {
+                window.setTimeout('show_runtime()', 1000);
+                X = new Date("9/21/2025 11:16:20");
+                Y = new Date();
+                T = (Y.getTime() - X.getTime());
+                M = 24*60*60*1000;
+                a = T / M;
+                A = Math.floor(a);
+                b = (a - A) * 24;
+                B = Math.floor(b);
+                c = (b - B) * 60;
+                C = Math.floor((b - B) * 60);
+                D = Math.floor((c - C) * 60);
+                rt.innerHTML =  A + '天' + B + '小时' + C + '分' + D + '秒';
+            }
+            show_runtime();
+        </script>
     </header>
 
     <main>
         <box>
-           <span>title</span>
+           <title>欢迎</title>
+            <content>
+                <span class="h-center">Welcome</span>
+            </content>
         </box>
         <box>
-            <span>Title</span>
+            <title>网站信息</title>
+            <content>
+                <span>浏览人数: <uv id="page_uv"/></span>
+                <span>浏览人次: <pv id="page_pv"/> </span>
+                <span>运行时间: <rt id="rt"/> </span>
+            </content>
         </box>
+        <box></box>
+        <box></box>
     </main>
-
+    <script defer src="//webviso.yestool.org/js/index.min.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
@@ -38,12 +67,19 @@
         font-family: 'Comfortaa', 'sans-serif';
     }
 
+    html {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
     body {
         background: var(--bg-color);
         padding: 20px;
         height: 100vh;                  /* 让 body 高度占满屏幕 */
-        display: grid;
-        /*place-items: center;            !* 水平 + 垂直居中 *!*/
+        /*display: grid;*/
+        /*place-items: normal;            !* 水平 + 垂直居中 *!*/
 
         header {
             animation: fadeInDown 0.8s ease-out;
@@ -85,58 +121,84 @@
     main {
         margin: 0 15px;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        grid-template-columns: repeat( auto-fit , minmax(400px, 0fr));
         gap: 20px;
         justify-content: center; /* 居中整个网格 */
-    }
 
-    box {
-        display: flex;
-        position: relative;
-        align-content: center;
-        min-width: 400px;
-        max-width: 400px;
-        min-height: 230px;
-        background-color: var(--box-bg);
-        border-radius: 25px;
-        box-shadow: var(--shadow);
-        transition: var(--transition);
-        span {
-            display: block;
+        box {
+            display: flex;
+            flex-direction: column;
             position: relative;
-            width: 100%;
+            align-content: center;
+            min-width: 400px;
+            max-width: 400px;
+            min-height: 230px;
             height: auto;
+            background-color: var(--box-bg);
+            border-radius: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            title {
+                display: block;
+                position: relative;
+                width: 100%;
+                height: auto;
+                top: 20px;
+                font-size: 30px;
+                justify-content: center;
+                text-align: center;
+            }
+            content {
+                display: block;
+                position: relative;
+                width: 100%;
+                height: auto;
+                top: 40px;
+                justify-content: center;
+                text-align: center;
+                align-items: center;
+                color: var(--black);
+                span {
+                    display: block;
+                    font-size: 25px;
+                }
+            }
+        }
+        box::after {
+            display: flex;
+            content: "";
+            position: absolute;
+            background-color: rgb(246, 113, 111); /* 红灯 */
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            left: 15px;
+            top: 15px;
 
-            justify-content: center;
-            text-align: center;
+            /* 复制两个灯 */
+            box-shadow:
+                    23px 0 rgb(242,202,68),   /* 黄灯 */
+                    46px 0 rgb(67, 198, 90);  /* 绿灯 */
+        }
+        box:hover {
+            box-shadow: var(--shadow-hovering);
+            transform: scale(1.02);
+        }
+        box:active {
+            box-shadow: var(--shadow);
+            transform: scale(0.99);
         }
     }
-    box::after {
-        display: flex;
-        content: "";
+
+    .notification {
         position: absolute;
-        background-color: rgb(246, 113, 111); /* 红灯 */
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        left: 15px;
-        top: 15px;
-
-        /* 复制两个灯 */
-        box-shadow:
-                23px 0 rgb(242,202,68),   /* 黄灯 */
-                46px 0 rgb(67, 198, 90);  /* 绿灯 */
+        z-index: 100;
+        width: 100vw;
+        height: 100vh;
+        background-color: black ;
     }
 
 
 
-    box:hover {
-        box-shadow: var(--shadow-hovering);
-        transform: scale(1.02);
-    }
 
-    box:active {
-        box-shadow: var(--shadow);
-        transform: scale(0.99);
-    }
 </style>
