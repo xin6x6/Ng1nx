@@ -62,8 +62,24 @@
                     <!--                -->
                 </content>
             </box>
-            <box></box>
-            <box></box>
+            <box>
+                <title>联系我</title>
+                <content>
+                    <a class="rick-roll" href="https://www.bilibili.com/video/BV1UT42167xb/?spm_id_from=333.337.search-card.all.click" type="button" target="_blank">BiliBili</a>
+                </content>
+            </box>
+            <box class="sub-nav" data-url="进制转换">
+                <title>工具</title>
+                <content>
+                    <h1>进制转换</h1>
+                </content>
+            </box>
+            <box class="sub-nav" data-url="图片压缩">
+                <title>工具</title>
+                <content>
+                    <h1>图片压缩</h1>
+                </content>
+            </box>
         </main>
 
     </div>
@@ -174,13 +190,21 @@
                 width: 100%;
                 height: auto;
                 top: 40px;
-                justify-content: center;
                 text-align: center;
-                align-items: center;
+                justify-items: center;
+
                 color: var(--black);
                 span {
                     display: block;
                     font-size: 25px;
+                }
+                h1 {
+                    display: block;
+                    position: relative;
+                    width: 60%;
+                    height: 80px;
+                    color: var(--black);
+                    border-radius: 25px;
                 }
             }
         }
@@ -210,6 +234,32 @@
         }
     }
 
+    button, .rick-roll {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 28px;
+        background: var(--gradient);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 500;
+        transition: var(--transition);
+        border: none;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        gap: 8px;
+        user-select: none;
+    }
+    button, .rick-roll:hover {
+        box-shadow: var(--shadow-hovering);
+        transform: scale(1.1);
+    }
+    button, .rick-roll:active {
+        box-shadow: var(--shadow);
+        transform: scale(0.99);
+    }
 
     .notification-container { /*bg*/
         position: absolute;
