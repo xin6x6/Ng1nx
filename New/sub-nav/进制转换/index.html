@@ -3,8 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="../../vars.css">
 </head>
-<body> 
-
+<body>
+    <main>
+        <header>
+            <h1>进制转换</h1>
+        </header>
+        <span>
+            <a>Bin</a>
+            <input id="Bin" type="number" oninput="this.value = this.value.replace(/[^01]/g, '')" placeholder="Binary form"/>
+        </span>
+        <span>
+            <a>Oct</a>
+            <input id="Oct" type="number" oninput="this.value = this.value.replace(/[^01234567]/g, '')" placeholder="Octal form"/>
+        </span>
+        <span>
+            <a>Dec</a>
+            <input id="Dec" type="number"  placeholder="Decimal form"/>
+        </span>
+        <span>
+            <a>Hex</a>
+            <input id="Hex"                oninput="this.value = this.value.replace(/[^0123456789ABCDEF]/g, '')" placeholder="Hexadecimal form"/>
+        </span>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
+
+<style>
+    body,html {
+        background: var(--bg-color);
+        align-content: center;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+    main {
+        display: flex;
+        justify-items: center;
+        flex-direction: column;
+        align-items: center;
+        width: 800px;
+        height: 500px;
+        background: var(--box-bg);
+        box-shadow: var(--shadow);
+        border-radius: 25px;
+        padding: 20px;
+        gap: 40px;
+
+        a {
+            font-size: 25px;
+            text-align: center;
+            align-content: center;
+            display: block;
+        }
+
+        span {
+            display: flex;
+            width: 80%;
+            height: auto;
+            input {
+                width: 100%;
+                height: 50px;
+                border: 1px solid var(--black);
+                border-radius:25px;
+                font-size: 20px;
+                text-align: center;
+                justify-content: center;
+            }
+            gap: 10px;
+        }
+    }
+    main:hover {
+        box-shadow: var(--shadow-hovering);
+        transition: var(--transition);
+    }
+</style>

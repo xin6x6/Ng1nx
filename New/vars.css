@@ -9,3 +9,12 @@
     --font-color: #3d3aff;
     --box-bg: rgba(255, 255, 255,0.95);
 }
+
+@font-face {
+    font-family: 'Comfortaa';
+    src: url(./font/Comfortaa.ttf);
+}
+
+* {
+    font-family: 'Comfortaa', 'sans-serif';
+}
