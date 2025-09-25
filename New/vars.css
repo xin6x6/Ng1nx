@@ -2,10 +2,17 @@
     --bg-color: linear-gradient(45deg, #ffefef, #e8ffff);
     --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
     --shadow-hovering: 0 15px 35px rgba(0, 0, 0, 0.15);
+    --colored-shadow:
+            0 0 7px #3377fe33,
+            0 0 10px #4c6fff33,
+            0 0 23px #8370ff33,
+            0 0 17px #ba59ff33;
     --transition: all 0.5s cubic-bezier(0.176, 0.885, 0.32, 1.1);
     --black: #1e1e2c;
     --white: #f8f9fa;
     --gradient: linear-gradient(45deg, #3d3aff, #8547f8);
+    --colored-border: linear-gradient(160deg, #3377fe, #4c6fff, #8370ff, #ba59ff);
+    --colored-bg: linear-gradient(60deg, var(--box-bg), #f8f9fa) padding-box, linear-gradient(160deg, #3377fe, #4c6fff, #8370ff, #ba59ff) border-box;
     --font-color: #3d3aff;
     --box-bg: rgba(255, 255, 255,0.95);
 }
@@ -13,6 +20,10 @@
 @font-face {
     font-family: 'Comfortaa';
     src: url(./font/Comfortaa.ttf);
+}
+@font-face {
+    font-family: 'JetBrain Mono';
+    src: url(./font/JetBrainsMono-Medium.ttf);
 }
 
 * {

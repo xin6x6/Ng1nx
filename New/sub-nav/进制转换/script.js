@@ -28,6 +28,7 @@ function updateAll(from, value) {
         case 'Dec': num = parseInt(value, 10); break;
         case 'Hex': num = parseInt(value, 16); break;
     }
+
     if (isNaN(num)) return; // 非法输入不更新
 
     if (from !== 'Bin') Bina.value = num.toString(2);

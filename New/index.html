@@ -12,6 +12,13 @@
 </head>
 <body>
 
+<!--    <video style="position: absolute; z-index: 101; display: none; width: 100%; height: 100%; display: flex;" muted id="myVideo" src="src/video/rickRoll.mp4"/>-->
+
+    <video id="rickRoll" width="100%" style="display: none; z-index:101; position: absolute; top: 0px; left: 0px;">
+        <source src="./src/video/rickRoll.mp4" type="video/mp4">
+        你的浏览器不支持 video.
+    </video>
+
     <div class="notification-container">
         <div class="notification">
             <h2>¡UI更新!</h2>
@@ -23,6 +30,14 @@
     </div>
 
     <div class="body-container">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <img onclick="showNotification()" src="src/icon/megaphone.svg" alt="公告"/>
+            </div>
+            <div class="navbar-right"></div>
+        </div>
+
+
         <header>
             <h1 class="animate__animated animate__bounceIn" style="font-size:45px;">Ng1nx的个人主页
             </h1>
@@ -47,10 +62,11 @@
         </header>
 
         <main>
-            <box>
+            <box onclick="rickRollStuff()" style="user-select: none;">
                 <title>欢迎</title>
                 <content>
-                    <span class="h-center">Welcome</span>
+                    <h1>Welcome</h1>
+<!--                    <span class="h-center">Welcome</span>-->
                 </content>
             </box>
             <box>
@@ -92,10 +108,6 @@
 </html>
 
 <style>
-    @font-face {
-        font-family: 'Comfortaa';
-        src: url(./font/Comfortaa.ttf);
-    }
 
     * {
         font-family: 'Comfortaa', 'sans-serif';
@@ -121,6 +133,7 @@
             margin-bottom: 50px;
 
             h1 {
+                z-index: 0 !important;
                 font-size: 2.8rem;
                 text-align: center;
                 background: var(--gradient);
@@ -133,6 +146,7 @@
                 letter-spacing: -0.5px;
                 position: relative;
                 display: block;
+                user-select: none;
             }
 
             h1::after {
@@ -149,10 +163,6 @@
         }
     }
 
-    .h-center {
-        display: flex;
-        justify-content: center;
-    }
 
     main {
         margin: 0 15px;
@@ -166,11 +176,15 @@
             flex-direction: column;
             position: relative;
             align-content: center;
+            /*background: linear-gradient(60deg, var(--box-bg), #f8f9fa);*/
+            background: var(--colored-bg);
+            backdrop-filter: blur(10px);
             min-width: 400px;
             max-width: 400px;
             min-height: 230px;
             height: auto;
-            background-color: var(--box-bg);
+            /*background-color: var(--box-bg);*/
+            border: 1px solid transparent;
             border-radius: 25px;
             box-shadow: var(--shadow);
             transition: var(--transition);
@@ -192,13 +206,14 @@
                 top: 40px;
                 text-align: center;
                 justify-items: center;
+                align-items: center;
 
                 color: var(--black);
                 span {
                     display: block;
                     font-size: 25px;
                 }
-                h1 {
+                h1{
                     display: block;
                     position: relative;
                     width: 60%;
@@ -225,7 +240,8 @@
                     46px 0 rgb(67, 198, 90);  /* 绿灯 */
         }
         box:hover {
-            box-shadow: var(--shadow-hovering);
+            box-shadow: var(--colored-shadow);
+            /*box-shadow: var(--shadow-hovering);*/
             transform: scale(1.02);
         }
         box:active {
@@ -238,10 +254,11 @@
     }
 
     button, .rick-roll {
-        display: inline-flex;
+        display: flex;
         align-items: center;
         justify-content: center;
         padding: 12px 28px;
+        /*margin: 8px 0;*/
         background: var(--gradient);
         color: white;
         text-decoration: none;
@@ -272,11 +289,12 @@
         left: 0;
         background: rgba(0,0,0,0.5);
         backdrop-filter: blur(10px);
-        z-index: 1;
+        z-index: 2;
         align-content: center;
         justify-content: center;
         align-items: center;
-        display: flex;
+        /*display: flex;*/
+        display: none;
         flex-direction: column;
         overflow: hidden;
         transition: var(--transition);
@@ -337,6 +355,53 @@
             box-shadow: var(--shadow);
             transform: scale(0.99);
         }
+    }
+    .navbar-container {
+        position: absolute;
+        display: flex;
+        top: 15px;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        align-items: center;
+        /*background: var(--black);*/
+
+
+        .navbar-left {
+            z-index: 1;
+            --left-center: calc(100vw/4 - 100px);
+            display: flex;
+            position: relative;
+            min-width: 60px;
+            height: 100%;
+            gap: 16px;
+            box-shadow: var(--shadow);
+            user-select: none;
+
+            transform-origin: center;
+            left: var(--left-center);
+            background: var(--colored-bg);
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.2s ease-in-out;
+            transition: var(--transition);
+            border-radius: 30px;
+
+            img {
+                animation: fadeIn 0.2s ease-in-out;
+                transition: var(--transition);
+                display: block;
+                position: relative;
+                height: 60%;
+            }
+            img:hover {
+                transform: scale(1.05);
+            }
+            img:active {
+                transform: scale(0.99);
+            }
+        }
+
     }
 
 
