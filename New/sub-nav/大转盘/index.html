@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../vars.css">
+</head>
+<body>
+    <header><h1>大转盘</h1></header>
+    <main>
+        <textarea id="choosingObject" placeholder="请输入文本, 换行分隔"></textarea>
+
+        <spinner id="spinner">
+<!--            <span></span>-->
+        </spinner>
+
+        <div class="indicator">
+            <?xml version="1.0" encoding="UTF-8"?>
+            <svg id="_图层_1" data-name="图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 232.34 131.32">
+                <defs>
+                    <style>
+                        .cls-1 {
+                            fill: #e60012;
+                            stroke: #231815;
+                            stroke-miterlimit: 10;
+                        }
+                    </style>
+                </defs>
+                <polygon class="cls-1" points="1.84 65.66 231.84 130.66 231.84 .66 1.84 65.66"/>
+            </svg>
+        </div>
+
+
+<!--        <div class="arrow"/>-->
+
+        <button id="startSpin">转!</button>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<style>
+
+    body,html {
+        background: var(--bg-color);
+        align-content: center;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+    }
+
+    main {
+        display: flex;
+        justify-items: center;
+        flex-direction: row;
+        align-items: center;
+        width: 1200px;
+        height: 600px;
+        background: var(--colored-bg);
+        border: 1px solid transparent;
+        box-shadow: var(--shadow);
+        border-radius: 25px;
+        padding: 20px;
+        gap: 40px;
+        transition: var(--transition);
+
+        #choosingObject {
+            display: flex;
+            position: relative;
+            background: var(--colored-bg);
+            border: 1px solid transparent;
+            border-radius: 25px;
+            text-align: center;
+            transition: var(--transition);
+
+            min-width: 250px;
+            max-width: 400px;
+            max-height: 100%;
+            min-height: 80%;
+
+            font-size: 25px;
+        }
+
+        spinner {
+            position: relative;
+            display: flex;
+            width: 60vh;
+            height: 60vh;
+            background: var(--bg-color);
+            border: 1px solid var(--colored-border);
+            border-radius: 50%;
+            box-shadow: var(--colored-shadow);
+            transition: all 5s cubic-bezier(0.18, 0, 0, 1.02);
+
+            align-items: center;
+            justify-content: center;
+
+            transform: rotate(0deg);
+
+        }
+        spinner::before {
+            content: "";
+            position: absolute;
+            background-color: var(--black);
+
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%); /* 保证居中 */
+            z-index: 2;
+
+            top: 50%;
+            left: 50%;
+
+        }
+
+        spinner span {
+            --r: 80px;
+            position: absolute;
+            color: var(--black);
+
+            height: auto;
+            width: 300px;
+            text-align: right;
+
+            transform: rotate(0deg);
+
+            transform-origin: center center;
+
+            h2 {
+                padding: 0;
+                margin: 0;
+                text-align: right;
+                right: 0;
+            }
+        }
+        spinner span::before {
+            /*--lineRotateDeg: 0deg;*/
+            content: "";
+            position: absolute;
+            height: 1px;
+            width: 30vh;
+            background-color: var(--black);
+
+            left: 50%;
+            top: 50%;
+
+            transform-origin: left center;
+            transform: rotate(var(--lineRotateDeg));
+
+        }
+
+        button {
+            position: relative;
+            display: flex;
+            width: 100px;
+            height: 80px;
+            left: 20px;
+            align-items: center;
+            justify-content: center;
+
+            background: var(--colored-bg);
+            border-radius: 25px;
+            border: 1px solid transparent;
+            box-shadow: var(--shadow);
+
+            transition: var(--transition);
+            font-size: 23px;
+        }button:hover {
+                transform: scale(1.1);
+                box-shadow: var(--colored-shadow);
+        }button:active {
+                transform: scale(0.99);
+                box-shadow: var(--shadow);
+        }
+
+        .indicator {
+            position: relative;
+            width: 35px;
+            left: -55px;
+        }
+    }
+</style>
