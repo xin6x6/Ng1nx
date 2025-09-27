@@ -7,6 +7,11 @@
             0 0 10px #4c6fff33,
             0 0 23px #8370ff33,
             0 0 17px #ba59ff33;
+    --colored-shadow-hovering:
+            0 0 7px #3377fe33,
+            0 0 14px #4c6fff33,
+            0 0 30px #8370ff33,
+            0 0 40px #ba59ff33;
     --transition: all 0.5s cubic-bezier(0.176, 0.885, 0.32, 1.1);
     --black: #1e1e2c;
     --white: #f8f9fa;
