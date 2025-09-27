@@ -6,11 +6,20 @@
     <link rel="stylesheet" href="../../vars.css">
 </head>
 <body>
-    <div class="submit">
-        <input type="file"/>
+    <div class="submit-container">
+        <input id="submit" type="file"/>
     </div>
 
+    <div class="slider">
+        <label id="qualityLabel" for="compress-degree">压缩程度: 50</label>
+        <input id="compress-degree" type="range" min="1" max="100" value="50">
+    </div>
 
+    <button id="download"> 转换并下载 </button>
+
+    <script src="https://unpkg.com/@ffmpeg/ffmpeg@0.9.5/dist/ffmpeg.min.js"></script>
+<!--    <script src="./ffmpeg.js"></script>-->
+    <script src="./script.js"></script>
 </body>
 </html>
 
@@ -31,7 +40,7 @@
 
 
 
-    .submit {
+    .submit-container {
         position: relative; /* ✅ 关键：伪元素相对这个容器定位 */
         width: 200px;
         height: 200px;
@@ -55,7 +64,7 @@
             left: 0;
         }
     }
-    .submit::before {
+    .submit-container::before {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -66,17 +75,39 @@
         display: flex;              /* ✅ 启用 Flex */
         align-items: center;        /* ✅ 垂直居中 */
         justify-content: center;    /* ✅ 水平居中 */
-        content: "+";
+        content: var(--icon114, "+");
         /*content: "✓";*/
         font-size: 5rem;
         opacity: 50%;
     }
-    .submit:hover {
+    .submit-container:hover {
         box-shadow: var(--colored-shadow-hovering);
         transform: scale(1.01);
     }
-    .submit:active {
+    .submit-container:active {
         box-shadow: var(--shadow);
         transform: scale(0.99);
     }
+
+    #download {
+        width: 150px;
+        height: 50px;
+        background: var(--colored-bg);
+        border: solid 1px transparent;
+        border-radius: 25px;
+        font-size: 18px;
+        box-shadow: var(--shadow);
+
+        transition: var(--transition);
+    }
+    #download:hover {
+        box-shadow: var(--colored-shadow-hovering);
+        transform: scale(1.01);
+    }
+    #download:active {
+        box-shadow: var(--shadow);
+        transform: scale(0.99);
+    }
+
+
 </style>

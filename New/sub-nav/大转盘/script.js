@@ -1,7 +1,7 @@
 const textArea = document.getElementById("choosingObject");
 const spinner = document.getElementById("spinner");
 const button = document.getElementById("startSpin");
-let currentRotatedDeg = 720;
+let currentRotatedDeg = 720 * Math.random() * 10;
 let currentAngle, content, length;
 
 //spin
