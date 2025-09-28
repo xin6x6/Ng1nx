@@ -24,7 +24,7 @@ function barFill() {
 
             if (i >= 9999) {
                 setTimeout(() => {
-                    window.location.href = "../index.html";
+                    window.location.href = "../../New/index.html";
                 }, 2000);
             }
         }

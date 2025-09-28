@@ -10,6 +10,7 @@ function showNotification() {
     console.log('showNotification');
 }
 
+
 //sub-nav
 const subnav = document.querySelectorAll('.sub-nav').forEach(el => {
     el.addEventListener('click', (e) => {
