@@ -4,7 +4,8 @@
 html, body {
   margin: 0;
   height: 100vh;
-  background: url('backgrounds/Neon.jpg');
+  /*background: url('backgrounds/Neon.jpg');*/
+  background: linear-gradient(45deg, #ff6666, #4ee1e1);;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -45,7 +46,7 @@ html, body {
 .macos-window {
   width: 80%;
   height: 80%;
-  border-radius: 25px;
+  border-radius: 20px;
   backdrop-filter: blur(25px) saturate(160%);
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -129,8 +130,10 @@ h1 {
   gap: 3px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.7);
+    /*border: 1px solid #e7eef80c;*/
   transition: all 0.3s ease-out;
+    z-index: 100;
 }
 
 .dock-icon {

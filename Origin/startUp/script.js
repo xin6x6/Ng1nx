@@ -2,7 +2,9 @@ const startingLogo = document.getElementById("startingLogo");
 const barEmpty = document.getElementById("barEmpty");
 const barFull = document.getElementById("barFull");
 const startUpAudio = document.getElementById("startUpAudio");
-let random = Math.random() / 3;
+let random = Math.random() / 3,
+    successfullyRedirect = false;
+
 console.log(random);
 
 if (window.requestFullscreen) {
@@ -24,6 +26,7 @@ function barFill() {
 
             if (i >= 9999) {
                 setTimeout(() => {
+                    successfullyRedirect = true;
                     window.location.href = "../../New/index.html";
                 }, 2000);
             }
@@ -33,7 +36,13 @@ function barFill() {
 
 }
 
-setTimeout(() => { //logo delay
+setTimeout(() => { //logo delay , entrance
+
+    setTimeout(() => {
+        if (!successfullyRedirect) {
+
+        }
+    }, 8000);
 
 
     startUpAudio.muted = false;
