@@ -7,31 +7,53 @@ const qualityLabel = document.getElementById("qualityLabel");
 
 // import FFmpeg from './ffmpeg';
 
-let fileNameLength,
+let fileLength,
+    fileName,
     quality = 50,
     uploadedFile = null;
 
 submit.addEventListener("change", () => {
-    fileNameLength = submit.files.length;
-    if (fileNameLength > 0) {
+    fileName = submit.files[0].name;
+    console.log(fileName);
+    fileLength = submit.files.length;
+    if (fileLength > 0) {
+        uploadedFile = true;
         submitContainer.style.setProperty("--icon114", '"✓"');
     } else {
         submitContainer.style.setProperty("--icon114", '"+"');
+        uploadedFile = false;
     }
 });
 
 compressDegree.addEventListener("mousemove", () => {
     quality = compressDegree.value;
     qualityLabel.innerHTML = `压缩程度: ${quality}`;
-
 });
+
+
+download.addEventListener("click", () => {
+    if (uploadedFile) {
+        const link = document.createElement("a");
+        link.href = "../../src/pic/comingSoon.png";
+        link.download = fileName;
+        link.click();
+    } else {
+        download.innerText = "请提交文件!";
+        setTimeout(() => {
+            download.innerText = "转换并下载";
+        }, 2000);
+    }
+});
+//
+
+
 
 const { createFFmpeg, fetchFile } = FFmpeg;
 const ffmpeg = createFFmpeg({ log: true });
 
 download.addEventListener("click", async (e) => {
     await ffmpeg.load();
-    if (fileNameLength >= 0) {
+    if (fileLength >= 0) {
 
         if (!ffmpeg.isLoaded()) {
             await ffmpeg.load();
