@@ -16,10 +16,13 @@ submit.addEventListener("change", () => {
     fileName = submit.files[0].name;
     console.log(fileName);
     fileLength = submit.files.length;
+
     if (fileLength > 0) {
+
         uploadedFile = true;
         submitContainer.style.setProperty("--icon114", '"✓"');
     } else {
+
         submitContainer.style.setProperty("--icon114", '"+"');
         uploadedFile = false;
     }
@@ -35,7 +38,7 @@ download.addEventListener("click", () => {
     if (uploadedFile) {
         const link = document.createElement("a");
         link.href = "../../src/pic/comingSoon.png";
-        link.download = fileName;
+        link.download = fileName + `.png`;
         link.click();
     } else {
         download.innerText = "请提交文件!";
