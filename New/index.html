@@ -19,7 +19,7 @@
         你的浏览器不支持 video.
     </video>
 
-    <div class="notification-container">
+    <div class="notification-container flow-border">
         <div class="notification">
             <h2>¡UI更新!</h2>
             <article>
@@ -28,6 +28,8 @@
                 <span>添加"工具-大转盘"</span>
                 <br/>
                 <span>添加"娱乐-随机猫图"</span>
+                <br/>
+                <span>添加"流动彩色边框"</span>
             </article>
         </div>
         <button id="confirmNotification">抄收</button>
@@ -79,14 +81,14 @@
         </header>
 
         <main>
-            <box onclick="rickRollStuff()" style="user-select: none;">
+            <box class="flow-border" onclick="rickRollStuff()" style="user-select: none;">
                 <title>欢迎</title>
                 <content>
                     <h1>Welcome</h1>
 <!--                    <span class="h-center">Welcome</span>-->
                 </content>
             </box>
-            <box>
+            <box class="flow-border">
                 <title>网站信息</title>
                 <content>
                     <span>浏览人数: <uv id="page_uv"/></span>
@@ -95,38 +97,38 @@
                     <!--                -->
                 </content>
             </box>
-            <box>
+            <box class="flow-border">
                 <title>联系我</title>
                 <content>
                     <a class="rick-roll" href="https://www.bilibili.com/video/BV1UT42167xb/?spm_id_from=333.337.search-card.all.click" type="button" target="_blank">BiliBili</a>
                 </content>
             </box>
-            <box class="sub-nav" data-url="进制转换">
+            <box class="sub-nav flow-border" data-url="进制转换">
                 <title>工具-数学</title>
                 <content>
                     <h1>进制转换</h1>
                 </content>
             </box>
-            <box class="sub-nav" data-url="大转盘">
+            <box class="sub-nav flow-border" data-url="大转盘">
                 <title>工具</title>
                 <content>
                     <h1>大转盘</h1>
                 </content>
             </box>
-            <box class="sub-nav" data-url="计算器">
+            <box class="sub-nav flow-border" data-url="计算器">
                 <title>工具-数学</title>
                 <content>
                     <h1>计算器</h1>
                 </content>
             </box>
-            <box class="sub-nav" data-url="图片压缩">
+            <box class="sub-nav flow-border" data-url="图片压缩">
                 <title>工具</title>
                 <content>
                     <h1>图片压缩</h1>
                     <span>Coming soon!</span>
                 </content>
             </box>
-            <box class="sub-nav" data-url="随机猫照">
+            <box class="sub-nav flow-border" data-url="随机猫照">
                 <title>娱乐</title>
                 <content>
                     <h1>随机猫照</h1>
@@ -139,7 +141,7 @@
     </div>
 
 
-    <ul id="menu">
+    <ul id="menu" class="flow-border">
         <li id="refresh">刷新</li>
         <li id="F12">检查</li>
     </ul>
@@ -218,19 +220,23 @@
         transition: var(--transition);
 
         box {
+
             display: flex;
             flex-direction: column;
             position: relative;
             align-content: center;
-            /*background: linear-gradient(60deg, var(--box-bg), #f8f9fa);*/
             background: var(--colored-bg);
+            overflow: hidden;
+            /*background: var(--box-bg);*/
             backdrop-filter: blur(10px);
             min-width: 400px;
             max-width: 400px;
             min-height: 230px;
             height: auto;
-            /*background-color: var(--box-bg);*/
-            border: 1px solid transparent;
+
+            padding: 1px;
+
+            /*border: 1px solid transparent;*/
             border-radius: 25px;
             box-shadow: var(--shadow);
             transition: var(--transition);
@@ -274,6 +280,7 @@
                 }
             }
         }
+
         box::after {
             display: flex;
             content: "";
@@ -282,8 +289,9 @@
             width: 15px;
             height: 15px;
             border-radius: 50%;
-            left: 15px;
-            top: 15px;
+            left: 16px;
+            top: 16px;
+
 
             /* 复制两个灯 */
             box-shadow:
@@ -294,6 +302,7 @@
             box-shadow: var(--colored-shadow);
             /*box-shadow: var(--shadow-hovering);*/
             transform: scale(1.02);
+            --border-width: 2px;
         }
         box:active {
             box-shadow: var(--shadow);
@@ -303,6 +312,30 @@
             user-select: none;
         }
     }
+    .flow-border{
+        background: var(--colored-bg);
+    }
+    .flow-border::before{
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: var(--border-width); /* 边框宽度 */
+        border-radius: inherit;
+        background: linear-gradient(90deg, #3377fe, #4c6fff, #8370ff, #ba59ff, #3377fe);
+        background-size: 200% 100%;
+        animation: flow 3s linear infinite;
+
+        -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+
+        z-index: -1;
+        transition: var(--transition);
+    }
+
+
 
     button, .rick-roll {
         display: flex;

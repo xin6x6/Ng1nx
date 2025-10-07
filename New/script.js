@@ -29,21 +29,23 @@ function rickRollStuff() {
 
 
 // menu
-
+let doShowCustomMenu = true;
 // no right click
 const area = document.querySelector(".body-container");
 const menu = document.getElementById("menu");
 
 document.addEventListener("contextmenu", (e) => {
-    e.preventDefault();
+    doShowCustomMenu ? e.preventDefault(): 0===0;
 });
 
 
 area.addEventListener("contextmenu", (e) => {
-    e.preventDefault();
-    menu.style.display = "block";
-    menu.style.left = e.pageX + "px";
-    menu.style.top = e.pageY + "px";
+    if (doShowCustomMenu) {
+        e.preventDefault();
+        menu.style.display = "block";
+        menu.style.left = e.pageX + "px";
+        menu.style.top = e.pageY + "px";
+    }
 });
 
 
@@ -56,5 +58,5 @@ const refresh = document.getElementById("refresh").addEventListener("click", () 
     location.reload();
 });
 const F12 = document.getElementById("F12").addEventListener("click", ()=> {
-    locatio
+    doShowCustomMenu = !doShowCustomMenu;
 });
