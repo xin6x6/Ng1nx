@@ -35,23 +35,23 @@ const area = document.querySelector(".body-container");
 const menu = document.getElementById("menu");
 
 document.addEventListener("contextmenu", (e) => {
-    doShowCustomMenu ? e.preventDefault(): 0===0;
-});
-
+    doShowCustomMenu ? e.preventDefault(): doShowCustomMenu = !doShowCustomMenu;
+}); // disable original menu
 
 area.addEventListener("contextmenu", (e) => {
     if (doShowCustomMenu) {
         e.preventDefault();
+        menu.style.opacity = "100";
         menu.style.display = "block";
         menu.style.left = e.pageX + "px";
         menu.style.top = e.pageY + "px";
     }
-});
-
+}); // show my menu
 
 document.addEventListener("click", () => {
+    menu.style.opacity = "0";
     menu.style.display = "none";
-});
+}); // close my menu
 
 // function of menu
 const refresh = document.getElementById("refresh").addEventListener("click", () => {
@@ -59,4 +59,5 @@ const refresh = document.getElementById("refresh").addEventListener("click", () 
 });
 const F12 = document.getElementById("F12").addEventListener("click", ()=> {
     doShowCustomMenu = !doShowCustomMenu;
+    
 });
