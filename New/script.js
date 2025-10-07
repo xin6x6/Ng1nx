@@ -26,3 +26,35 @@ function rickRollStuff() {
     rickRoll.play();
     rickRoll.style.display = 'flex';
 }
+
+
+// menu
+
+// no right click
+const area = document.querySelector(".body-container");
+const menu = document.getElementById("menu");
+
+document.addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+});
+
+
+area.addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+    menu.style.display = "block";
+    menu.style.left = e.pageX + "px";
+    menu.style.top = e.pageY + "px";
+});
+
+
+document.addEventListener("click", () => {
+    menu.style.display = "none";
+});
+
+// function of menu
+const refresh = document.getElementById("refresh").addEventListener("click", () => {
+    location.reload();
+});
+const F12 = document.getElementById("F12").addEventListener("click", ()=> {
+    locatio
+});

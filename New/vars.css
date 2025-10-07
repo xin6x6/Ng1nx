@@ -34,3 +34,57 @@
 * {
     font-family: 'Comfortaa', 'sans-serif';
 }
+
+
+#menu {
+    display: none;
+    position: fixed;
+    list-style: none;
+    background: var(--box-bg);
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(170, 100, 255, 0.4);
+    padding: 10px 0;
+    z-index: 999;
+    overflow: hidden; /* 防止伪元素溢出 */
+    min-width: 200px;
+}
+
+/* ✨ 用伪元素画流动的霓虹边框 */
+#menu::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 2px; /* 边框宽度 */
+    border-radius: inherit;
+    background: linear-gradient(90deg, #3377fe, #4c6fff, #8370ff, #ba59ff, #3377fe);
+    background-size: 200% 100%;
+    animation: flow 3s linear infinite;
+
+    -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    z-index: -1;
+}
+
+/* 动画：让渐变流动起来 */
+@keyframes flow {
+    0% { background-position: 0% 0; }
+    100% { background-position: 200% 0; }
+}
+#menu li {
+    /*padding: 10px 0px;*/
+    padding: 7px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 15px;
+}
+
+
+#menu li:hover {
+    background: rgba(180, 100, 255, 0.2);
+}
