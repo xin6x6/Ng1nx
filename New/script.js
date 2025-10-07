@@ -59,5 +59,5 @@ const refresh = document.getElementById("refresh").addEventListener("click", () 
 });
 const F12 = document.getElementById("F12").addEventListener("click", ()=> {
     doShowCustomMenu = !doShowCustomMenu;
-    
+
 });
