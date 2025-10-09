@@ -32,12 +32,12 @@
                 <span>添加"流动彩色边框"</span>
             </article>
         </div>
-        <button id="confirmNotification">抄收</button>
+        <button class="button-prim flow-border" id="confirmNotification" style="bottom: 50px;">抄收</button>
     </div>
 
     <div class="body-container">
         <div class="navbar-container">
-            <div class="navbar-left">
+            <div class="navbar-left flow-border-thick">
                 <svg onclick="showNotification()" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
                     <title>公告</title>
                     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
@@ -54,7 +54,7 @@
                     </g>
                 </svg>
             </div>
-            <div class="navbar-right">
+            <div class="navbar-right flow-border-thick">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                         <path stroke-dasharray="28" stroke-dashoffset="28" d="M7 8c0 -2.76 2.24 -5 5 -5c2.76 0 5 2.24 5 5c0 1.64 -0.79 3.09 -2 4c-0.84 0.63 -3 2 -3 5">
@@ -112,7 +112,8 @@
             <box class="flow-border">
                 <title>联系我</title>
                 <content>
-                    <a class="rick-roll" href="https://www.bilibili.com/video/BV1UT42167xb/?spm_id_from=333.337.search-card.all.click" type="button" target="_blank">BiliBili</a>
+                    <a id="button" class="button-prim flow-border" href="https://space.bilibili.com/1734028728" type="button" target="_blank">BiliBili</a>
+                    <a class="button-prim flow-border" href="https://github.com/xin6x6" type="button" target="_blank">Github</a>
                 </content>
             </box>
             <box class="sub-nav flow-border" data-url="进制转换">
@@ -138,6 +139,13 @@
                 <content>
                     <h1>图片压缩</h1>
                     <span>Coming soon!</span>
+                </content>
+            </box>
+            <box class="sub-nav flow-border" data-url="代码图片生成">
+                <title>工具</title>
+                <content>
+                    <h1>代码图片生成</h1>
+                    <span>Coming soon! </span>
                 </content>
             </box>
             <box class="sub-nav flow-border" data-url="随机猫照">
@@ -166,11 +174,9 @@
 </html>
 
 <style>
-
     * {
         font-family: 'Comfortaa', 'sans-serif';
     }
-
     html, body {
         width: 100%;
         height: 100%;
@@ -178,6 +184,7 @@
         padding: 0;
         overflow: hidden;
     }
+
 
     .body-container {
         transition: var(--transition);
@@ -328,59 +335,7 @@
             user-select: none;
         }
     }
-    .flow-border{
-        background: var(--colored-bg);
-        transition: var(--transition);
-    }
-    .flow-border::before{
-        content: "";
-        position: absolute;
-        inset: 0;
-        padding: var(--border-width); /* 边框宽度 */
-        border-radius: inherit;
-        background: linear-gradient(90deg, #3377fe, #4c6fff, #8370ff, #ba59ff, #3377fe);
-        background-size: 200% 100%;
-        animation: flow 3s linear infinite;
 
-        -webkit-mask:
-                linear-gradient(#fff 0 0) content-box,
-                linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-
-        z-index: -1;
-        transition: var(--transition);
-    }
-
-
-
-    button, .rick-roll {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 12px 28px;
-        /*margin: 8px 0;*/
-        background: var(--gradient);
-        color: white;
-        text-decoration: none;
-        border-radius: 50px;
-        font-weight: 500;
-        transition: var(--transition);
-        border: none;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
-        gap: 8px;
-        user-select: none;
-    }
-    button, .rick-roll:hover {
-        box-shadow: var(--shadow-hovering);
-        transform: scale(1.1);
-    }
-    button, .rick-roll:active {
-        box-shadow: var(--shadow);
-        transform: scale(0.99);
-    }
 
     .notification-container { /*bg*/
         position: absolute;
@@ -428,33 +383,6 @@
                 width: 100%;
             }
 
-        }
-        button {
-            display: inline-flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding: 12px 28px;
-            background: var(--gradient);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: var(--transition);
-            border: none;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
-            gap: 8px;
-            z-index: 1;
-            top: -50px;
-        }
-        button:hover {
-            box-shadow: var(--shadow-hovering);
-            transform: scale(1.1);
-        }
-        button:active {
-            box-shadow: var(--shadow);
-            transform: scale(0.99);
         }
     }
     .navbar-container {
@@ -550,7 +478,4 @@
         }
 
     }
-
-
-
 </style>
