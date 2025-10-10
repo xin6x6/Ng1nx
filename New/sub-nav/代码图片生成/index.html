@@ -5,6 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="../../vars.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -23,29 +24,9 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-7ymO4nGrkm372HoSbq1OY2DP4pEZnMiA+E0F3zPr+JQQtQ82gQ1HPY3QIVtztVua" crossorigin="anonymous"></script>
-    <script>
-const textarea = document.getElementById("code");
-const codeArea = document.querySelector(".code-area");
 
-function adjustHeight() {
-    // 重置 textarea 高度
-    textarea.style.height = "auto";
-
-    // 设置 textarea 高度为内容高度
-    textarea.style.height = textarea.scrollHeight + "px";
-
-    // 设置父容器最小高度以适应 textarea
-    codeArea.style.minHeight = textarea.scrollHeight + "px";
-}
-
-// 页面加载时初始化
-adjustHeight();
-
-// 输入时自动调整高度
-textarea.addEventListener("input", adjustHeight);
-</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>
 
@@ -137,8 +118,10 @@ textarea.addEventListener("input", adjustHeight);
         overflow-wrap: break-word;
         -webkit-font-smoothing: antialiased;
         resize: none;
+        color: var(--white);           /* 保持文字颜色不变 */
 
         transition: var(--transition);
+        outline: none;
 
     }
 

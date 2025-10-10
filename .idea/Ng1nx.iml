@@ -6,5 +6,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="index" level="application" />
+    <orderEntry type="library" name="highlight.js" level="application" />
   </component>
 </module>
