@@ -8,15 +8,44 @@
 </head>
 
 <body>
-    <header class="title"><h1>代码图片生成</h1></header>
 
+    <main class="main-area flow-border">
 
+        <div class="picture-area">
+
+            <div class="code-area">
+                <textarea id="code" style=""></textarea>
+            </div>
+        </div>
+
+    </main>
 
 
 
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-7ymO4nGrkm372HoSbq1OY2DP4pEZnMiA+E0F3zPr+JQQtQ82gQ1HPY3QIVtztVua" crossorigin="anonymous"></script>
+    <script>
+const textarea = document.getElementById("code");
+const codeArea = document.querySelector(".code-area");
+
+function adjustHeight() {
+    // 重置 textarea 高度
+    textarea.style.height = "auto";
+
+    // 设置 textarea 高度为内容高度
+    textarea.style.height = textarea.scrollHeight + "px";
+
+    // 设置父容器最小高度以适应 textarea
+    codeArea.style.minHeight = textarea.scrollHeight + "px";
+}
+
+// 页面加载时初始化
+adjustHeight();
+
+// 输入时自动调整高度
+textarea.addEventListener("input", adjustHeight);
+</script>
 </body>
 </html>
 
@@ -29,17 +58,93 @@
         height: 100vh;
         margin: 0;
         padding: 0;
+        overflow: hidden;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+    }
+    body {
+        display: flex;
+        background: var(--bg-color);
+        align-content: center;
+        align-items: center;
     }
 
-    body {
-        background: var(--bg-color);
+    main {
+        justify-content: normal;
     }
-    .title {
-        display: block;
-        text-align: center;
-        padding: 20px;
-        color: var(--black);
+
+    .picture-area {
+        display: flex;
+        position: relative;
+        width: 100%;
+        min-height: 200px;
+        height: auto;
+        max-width: 1000px;
+        padding: 60px;
+
+        border-radius: 15px;
+
+        background: var(--pure-colored-bg);
+        transition: var(--transition);
     }
+
+    .code-area {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        justify-content: flex-end;
+        width: 100%;
+        height: 100%;
+
+        padding: 40px 25px 25px;
+        transition: var(--transition);
+
+        background: #1e1e2cAF;
+
+        border-radius: 15px;
+    }
+    .code-area::after {
+        display: flex;
+        content: "";
+        position: absolute;
+        background-color: rgb(246, 113, 111); /* 红灯 */
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        left: 16px;
+        top: 16px;
+
+
+        /* 复制两个灯 */
+        box-shadow:
+                23px 0 rgb(242,202,68),   /* 黄灯 */
+                46px 0 rgb(67, 198, 90);  /* 绿灯 */
+    }
+    #code {
+        display: flex;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        min-height: 100%;
+        height: auto;
+
+        background: transparent;
+        border: none;
+
+        white-space: pre-wrap;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+        -webkit-font-smoothing: antialiased;
+        resize: none;
+
+        transition: var(--transition);
+
+    }
+
+
 
 
 </style>
+
+<!--margin: 0px; border: 0px; background: none; box-sizing: inherit; display: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-ligatures: inherit; font-weight: inherit; letter-spacing: inherit; line-height: inherit; tab-size: inherit; text-indent: inherit; text-rendering: inherit; text-transform: inherit; white-space: pre-wrap; word-break: keep-all; overflow-wrap: break-word; position: absolute; top: 0px; left: 0px; height: 100%; width: 100%; resize: none; color: inherit; overflow: hidden; -webkit-font-smoothing: antialiased; resize: none; -webkit-text-fill-color: transparent; padding: 0px;-->

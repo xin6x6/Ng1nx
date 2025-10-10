@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 :root {
     --bg-color: linear-gradient(45deg, #ffefef, #e8ffff);
     --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
@@ -44,14 +51,25 @@
     list-style: none;
     background: #FFFFFF80;
     border-radius: 15px;
+    -webkit-box-shadow: 0 0 30px rgba(170, 100, 255, 0.4);
     box-shadow: 0 0 30px rgba(170, 100, 255, 0.4);
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     padding: 10px 0;
     z-index: 999;
     overflow: hidden; /* 防止伪元素溢出 */
     min-width: 200px;
+    -webkit-transition: var(--transition);
+    -o-transition: var(--transition);
     transition: var(--transition);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
+}
+@-webkit-keyframes flow {
+    0% { background-position: 0% 0; }
+    100% { background-position: 200% 0; }
 }
 @keyframes flow {
     0% { background-position: 0% 0; }
@@ -61,6 +79,8 @@
     /*padding: 10px 0px;*/
     padding: 7px;
     cursor: pointer;
+    -webkit-transition: background 0.2s;
+    -o-transition: background 0.2s;
     transition: background 0.2s;
     border-radius: 15px;
     text-align: center;
@@ -73,6 +93,8 @@
 
 .flow-border{
     background: var(--colored-bg);
+    -webkit-transition: var(--transition);
+    -o-transition: var(--transition);
     transition: var(--transition);
 }
 .flow-border::before{
@@ -81,9 +103,16 @@
     inset: 0;
     padding: var(--border-width); /* 边框宽度 */
     border-radius: inherit;
+    background: -webkit-gradient(linear, left top, right top, from(#3377fe), color-stop(#4c6fff), color-stop(#8370ff), color-stop(#ba59ff), to(#3377fe));
+    background: -o-linear-gradient(left, #3377fe, #4c6fff, #8370ff, #ba59ff, #3377fe);
     background: linear-gradient(90deg, #3377fe, #4c6fff, #8370ff, #ba59ff, #3377fe);
     background-size: 200% 100%;
+    -webkit-animation: flow 3s linear infinite;
     animation: flow 3s linear infinite;
+
+    -webkit-mask:
+            -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff)) content-box,
+            -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff));
 
     -webkit-mask:
             linear-gradient(#fff 0 0) content-box,
@@ -92,10 +121,14 @@
     mask-composite: exclude;
 
     z-index: -1;
+    -webkit-transition: var(--transition);
+    -o-transition: var(--transition);
     transition: var(--transition);
 }
 .flow-border-thick {
     background: var(--colored-bg);
+    -webkit-transition: var(--transition);
+    -o-transition: var(--transition);
     transition: var(--transition);
 }
 .flow-border-thick::before {
@@ -104,9 +137,16 @@
     inset: 0;
     padding: 2px; /* 边框宽度 */
     border-radius: inherit;
+    background: -webkit-gradient(linear, left top, right top, from(#3377fe), color-stop(#4c6fff), color-stop(#8370ff), color-stop(#ba59ff), to(#3377fe));
+    background: -o-linear-gradient(left, #3377fe, #4c6fff, #8370ff, #ba59ff, #3377fe);
     background: linear-gradient(90deg, #3377fe, #4c6fff, #8370ff, #ba59ff, #3377fe);
     background-size: 200% 100%;
+    -webkit-animation: flow 3s linear infinite;
     animation: flow 3s linear infinite;
+
+    -webkit-mask:
+            -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff)) content-box,
+            -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff));
 
     -webkit-mask:
             linear-gradient(#fff 0 0) content-box,
@@ -115,16 +155,29 @@
     mask-composite: exclude;
 
     z-index: -1;
+    -webkit-transition: var(--transition);
+    -o-transition: var(--transition);
     transition: var(--transition);
 }
 
 .button-prim {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     position: relative;
+    -webkit-transition: var(--transition);
+    -o-transition: var(--transition);
     transition: var(--transition);
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
 
 
@@ -144,24 +197,43 @@
     background: var(--pure-colored-bg);
     z-index: 1;
 
+    -webkit-box-shadow: var(--colored-shadow);
+
     box-shadow: var(--colored-shadow);
 }
 .button-prim:hover {
+    -webkit-box-shadow: var(--colored-shadow-hovering);
     box-shadow: var(--colored-shadow-hovering);
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
     transform: scale(1.03);
 }
 .button-prim:active {
+    -webkit-box-shadow: var(--colored-shadow);
     box-shadow: var(--colored-shadow);
+    -webkit-transform: scale(0.99);
+    -ms-transform: scale(0.99);
     transform: scale(0.99);
 }
 
 .button-sec {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     position: relative;
+    -webkit-transition: var(--transition);
+    -o-transition: var(--transition);
     transition: var(--transition);
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
 
 
@@ -181,13 +253,38 @@
     background: transparent;
     z-index: 1;
 
+    -webkit-box-shadow: var(--shadow);
+
     box-shadow: var(--shadow);
 }
 .button-sec:hover {
+    -webkit-box-shadow: var(--shadow-hovering);
     box-shadow: var(--shadow-hovering);
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
     transform: scale(1.03);
 }
 .button-sec:active {
+    -webkit-box-shadow: var(--shadow);
     box-shadow: var(--shadow);
+    -webkit-transform: scale(0.99);
+    -ms-transform: scale(0.99);
     transform: scale(0.99);
+}
+
+
+.main-area {
+    position: fixed;
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+    border-radius: 25px;
+    padding: 20px;
+    gap: 40px;
+    transition: var(--transition);
+    background: var(--colored-bg);
+    box-shadow: var(--shadow);
 }
