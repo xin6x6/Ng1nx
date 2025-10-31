@@ -19,8 +19,6 @@ adjustHeight();
 // 输入时自动调整高度
 textarea.addEventListener("input", adjustHeight);
 
-//
-// const code = document.getElementById("code");
-// code.addEventListener("change", (el) => {
-//     hljs.highlightElement(el);
-// })
+
+const code = document.getElementById("code");
+hljs.highlightElement(code);

@@ -61,3 +61,9 @@ const F12 = document.getElementById("F12").addEventListener("click", ()=> {
     doShowCustomMenu = !doShowCustomMenu;
 
 });
+
+
+
+
+
+

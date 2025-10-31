@@ -73,6 +73,24 @@
             <h1 class="animate__animated animate__bounceIn" style="font-size:45px;">Ng1nx的个人主页
             </h1>
             <script type="text/javascript">
+                let pagePv, deltaVisit;
+                // console.log("dV", (deltaVisit.toString() === "undefined"));
+                setInterval( ()=> {
+                    pagePv = document.getElementById("page_pv").innerText;
+                    const now = new Date();
+                    const hours = now.getHours();     // 小时（0~23）
+                    const minutes = now.getMinutes(); // 分钟（0~59）
+                    const seconds = now.getSeconds(); // 秒（0~59）
+
+
+                    if (!(hours && minutes && seconds)) {
+                        deltaVisit = Math.abs(pagePv - deltaVisit);
+                    }
+
+                    document.getElementById("dv").innerText = deltaVisit.toString();
+
+                },3000); // update pv
+
                 function show_runtime() {
                     window.setTimeout('show_runtime()', 1000);
                     X = new Date("9/21/2025 11:16:20");
@@ -89,6 +107,10 @@
                     rt.innerHTML =  A + '天' + B + '小时' + C + '分' + D + '秒';
                 }
                 show_runtime();
+
+
+
+
             </script>
         </header>
 
@@ -103,9 +125,10 @@
             <box class="flow-border">
                 <title>网站信息</title>
                 <content>
-                    <span>浏览人数: <uv id="page_uv"/></span>
-                    <span>浏览人次: <pv id="page_pv"/> </span>
+                    <span>浏览人数: <uv id="page_uv">???</uv></span>
+                    <span>浏览人次: <pv id="page_pv">???</pv> </span>
                     <span>运行时间: <rt id="rt"/> </span>
+                    <span>今日浏览人次: <dv id="dv">???</dv></span>
                     <!--                -->
                 </content>
             </box>
